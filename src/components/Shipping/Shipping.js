@@ -59,8 +59,8 @@ const additionalShippingData = [
 
 const Shipping = () => {
   return (
-    <>
-      <section className="shipping-section original-shipping">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <section className="shipping-section original-shipping" style={{ marginBottom: '0', paddingBottom: '0' }}>
         <div className="shipping-container">
           <h2 className="shipping-title">Shipping</h2>
           <div className="shipping-cards">
@@ -77,7 +77,7 @@ const Shipping = () => {
         </div>
       </section>
 
-      <section className="shipping-section additional-shipping">
+      <section className="shipping-section additional-shipping" style={{ marginTop: '-10px', paddingTop: '0' }}>
         <div className="shipping-container">
           <div className="shipping-cards">
             {additionalShippingData.map((item) => (
@@ -88,7 +88,7 @@ const Shipping = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
