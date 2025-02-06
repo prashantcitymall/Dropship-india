@@ -1,27 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Typography, Button, Box } from '@mui/material';
-import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
 
-const VideoWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: -1;
-  
-  iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: calc(100vw + 200px);
-    height: calc(100vh + 200px);
-    transform: translate(-50%, -50%) scale(1.1);
-    pointer-events: none;
-  }
-`;
+
 
 const Overlay = styled.div`
   position: absolute;
@@ -29,12 +11,7 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
+  background: linear-gradient(135deg, #9BAFD9 0%, #103783 100%);
   z-index: -1;
 `;
 
@@ -44,12 +21,78 @@ const HeroSection = styled(Box)`
   min-height: 100vh;
   position: relative;
   overflow: hidden;
+  background: transparent;
 `;
-const HeroTitle = styled(Typography)`
-  font-size: 3.5rem;
-  font-weight: bold;
-  margin-bottom: 20px;
+const glowText = keyframes`
+  0% { text-shadow: 0 0 10px rgba(65, 105, 225, 0.3), 0 0 20px rgba(65, 105, 225, 0.3); }
+  50% { text-shadow: 0 0 20px rgba(65, 105, 225, 0.5), 0 0 30px rgba(65, 105, 225, 0.5); }
+  100% { text-shadow: 0 0 10px rgba(65, 105, 225, 0.3), 0 0 20px rgba(65, 105, 225, 0.3); }
+`;
+
+const slideUp = keyframes`
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const TextContainer = styled.div`
   text-align: center;
+  margin-top: 120px;
+`;
+
+const gradientMove = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
+const MainTitle = styled(Typography)`
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 0%, #4169E1 50%, #00ff88 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: 
+    ${slideUp} 0.8s ease forwards,
+    ${gradientMove} 8s ease infinite;
+  text-align: center;
+`;
+
+const SubTitle = styled(Typography)`
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin: 30px 0;
+  opacity: 0;
+  animation: 
+    ${slideUp} 0.8s ease forwards ${props => props.delay}s,
+    ${glowText} 3s ease-in-out infinite ${props => props.delay + 0.8}s;
+`;
+
+const Description = styled(Typography)`
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 800px;
+  margin: 60px auto;
+  opacity: 0;
+  animation: ${slideUp} 0.8s ease forwards ${props => props.delay}s;
+  line-height: 1.5;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 20px;
 `;
 
 const HeroSubtitle = styled(Typography)`
@@ -61,7 +104,7 @@ const HeroSubtitle = styled(Typography)`
 const ButtonWrapper = styled(Box)`
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 82%;
   transform: translate(-50%, -50%);
 `;
 
@@ -99,31 +142,47 @@ const ExploreButton = styled(Button)`
 `;
 
 const Hero = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
   return (
     <HeroSection>
-      <VideoWrapper>
-        <iframe
-          src="https://www.youtube.com/embed/3vVdmYz5eNY?autoplay=1&mute=1&controls=0&loop=1&playlist=3vVdmYz5eNY&showinfo=0&rel=0&enablejsapi=1&version=3&playerapiid=ytplayer&modestbranding=1&iv_load_policy=3&origin=https://blackbuck.com"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          title="Background Video"
-        />
-      </VideoWrapper>
+
       <Overlay />
       <Container>
-        <HeroTitle variant="h1">
-          INDIA's LARGEST
-        </HeroTitle>
-        <HeroSubtitle variant="h2">
-          DIGITAL DROPSHIPPING PLATFORM
-        </HeroSubtitle>
+        <TextContainer>
+          <MainTitle variant="h1" className={isVisible ? 'visible' : ''}>
+            Dropship India
+          </MainTitle>
+          <SubTitle variant="h2" delay={0.3} className={isVisible ? 'visible' : ''}>
+            Source Anything,
+          </SubTitle>
+          <SubTitle variant="h2" delay={0.6} className={isVisible ? 'visible' : ''}>
+            Ship Everything
+          </SubTitle>
+
+        </TextContainer>
         <ButtonWrapper>
+          <Typography
+            variant="h6"
+            sx={{
+              color: '#fff',
+              marginBottom: '20px',
+              textAlign: 'center',
+              fontWeight: 500,
+              textShadow: '0 2px 4px rgba(0,0,0,0.3)'
+            }}
+          >
+            Become a part of India's fastest growing dropshipping platform!
+          </Typography>
           <ExploreButton 
             variant="contained"
-            onClick={() => window.location.href = '/explore'}
+            onClick={() => navigate('/explore')}
           >
-            Explore
+            Explore Now
             <span className="arrow">→</span>
           </ExploreButton>
         </ButtonWrapper>

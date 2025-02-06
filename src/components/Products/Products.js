@@ -21,6 +21,8 @@ const ServiceSection = styled(Box)`
   padding: 80px 0;
   background: #1976D2;
   color: white;
+  position: relative;
+  z-index: 1;
 `;
 
 const ServiceTitle = styled(Typography)`
