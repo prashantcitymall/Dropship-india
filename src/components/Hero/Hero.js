@@ -181,6 +181,7 @@ const Hero = () => {
           <ExploreButton 
             variant="contained"
             onClick={() => navigate('/explore')}
+            sx={{ marginLeft: '25%' }}
           >
             Explore Now
             <span className="arrow">→</span>

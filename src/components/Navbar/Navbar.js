@@ -12,10 +12,11 @@ const HeaderWrapper = styled.div`
   right: 0;
   z-index: 1000;
   min-height: 80px;
-  background: rgba(10, 12, 16, 0.4);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(65, 105, 225, 0.2);
+  background: rgba(24, 49, 130, 0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   transition: all 0.4s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 
   &::before {
     content: '';
@@ -26,9 +27,9 @@ const HeaderWrapper = styled.div`
     bottom: 0;
     background: linear-gradient(
       135deg,
-      rgba(65, 105, 225, 0.1) 0%,
-      rgba(0, 255, 136, 0.05) 50%,
-      rgba(65, 105, 225, 0.1) 100%
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0.1) 100%
     );
     pointer-events: none;
   }
