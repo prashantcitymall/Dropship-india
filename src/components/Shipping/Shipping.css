@@ -332,13 +332,14 @@
   transform: translateX(120%);
 }
 .right-image {
-  width: 232px;
-  height: auto;
-  object-fit: contain;
+  width: 279px;
+  height: 119%;
+  object-fit: cover;
   mix-blend-mode: multiply;
   filter: brightness(1.1) contrast(1.1);
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
+  clip-path: inset(0 0 1% 0);
 }
 
 @media (max-width: 768px) {
