@@ -79,12 +79,39 @@ const Shipping = () => {
 
       <section className="shipping-section additional-shipping" style={{ marginTop: '-10px', paddingTop: '0' }}>
         <div className="shipping-container">
-          <div className="shipping-cards">
-            {additionalShippingData.map((item) => (
-              <div key={item.id} className="shipping-card" tabIndex="-1">
-                <img src={item.image} alt={item.title} className="shipping-image" draggable="false" />
+          <div className="shipping-content-wrapper">
+            <div className="shipping-cards">
+              {additionalShippingData.map((item) => (
+                <div key={item.id} className="shipping-card" tabIndex="-1">
+                  <img src={item.image} alt={item.title} className="shipping-image" draggable="false" />
+                </div>
+              ))}
+            </div>
+            <div className="side-image-container">
+              <img src="/images/left.png" alt="Side decoration" className="side-image" draggable="false" />
+            </div>
+          </div>
+          <div className="bottom-tiles">
+            <div className="right-image-container">
+              <img src="/images/right.png" alt="Right decoration" className="right-image" draggable="false" />
+            </div>
+            <div className="bottom-tiles-grid">
+              <div className="tile-card">
+                <img src="/a.png" alt="Tile A" className="tile-image" draggable="false" />
               </div>
-            ))}
+              <div className="tile-card">
+                <img src="/b.png" alt="Tile B" className="tile-image" draggable="false" />
+              </div>
+              <div className="tile-card">
+                <img src="/c.png" alt="Tile C" className="tile-image" draggable="false" />
+              </div>
+              <div className="tile-card">
+                <img src="/d.png" alt="Tile D" className="tile-image" draggable="false" />
+              </div>
+              <div className="tile-card">
+                <img src="/e.png" alt="Tile E" className="tile-image" draggable="false" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
