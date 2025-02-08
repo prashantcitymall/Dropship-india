@@ -70,27 +70,19 @@ const ProductSection = styled.section`
   animation-delay: ${props => props.delay}s;
 `;
 
-const MainTitle = styled(Typography)`
-  color: #ffffff;
-  font-size: 3.5rem;
+const Title = styled(Typography)`
+  font-size: 3.2rem;
   font-weight: 700;
-  margin-bottom: 24px;
-  position: relative;
-  display: inline-block;
-  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 40px;
+  color: transparent;
+  background: linear-gradient(135deg, #8BC34A 0%, #4CAF50 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 15px rgba(139, 195, 74, 0.3);
   letter-spacing: 2px;
 
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #00F5A0, #00D9F5);
-  }
-
-  @media (max-width: 960px) {
+  @media (max-width: 768px) {
     font-size: 2.5rem;
   }
 `;
@@ -220,9 +212,9 @@ const Products = () => {
     <ProductsWrapper className="products-wrapper">
       <Container maxWidth="lg">
         <ProductSection delay={0}>
-          <Typography variant="h1" className="text-glow main-title">
-            Our Products
-          </Typography>
+          <Title variant="h1">
+            DROPSHIP INDIA
+          </Title>
           <ImageContainer className="image-container">
             <ProductImage 
               src="/images/products.png" 

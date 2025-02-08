@@ -42,7 +42,6 @@ function App() {
             <>
               <div className="other-page" />
               <About />
-              <Footer />
             </>
           } />
           <Route path="/team" element={

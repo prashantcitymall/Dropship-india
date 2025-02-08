@@ -1,9 +1,11 @@
 import React from 'react';
 import AboutTiles from '../components/AboutTiles/AboutTiles';
+import AboutAnalytics from '../components/AboutAnalytics/AboutAnalytics';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const AboutContainer = styled.div`
+  padding: 40px 0 30px;
   min-height: 100vh;
   background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
   position: relative;
@@ -33,59 +35,95 @@ const AboutContainer = styled.div`
   }
 `;
 
-const Header = styled(motion.div)`
+const AboutHeader = styled(motion.div)`
   text-align: center;
-  padding: 80px 20px 40px;
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 20px;
+  padding: 0 20px;
 `;
 
-const Title = styled.h1`
-  font-size: 3.5rem;
-  margin-bottom: 20px;
+const AboutTitle = styled.h1`
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: transparent;
   background: linear-gradient(135deg, #8BC34A 0%, #4CAF50 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 15px rgba(139, 195, 74, 0.3);
+  margin-bottom: 15px;
+`;
 
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
+const AboutDescription = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.8;
+  padding: 0 20px;
+`;
+
+const DescriptionParagraph = styled.p`
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-align: left;
+  opacity: 0.9;
+  padding-left: 40px;
+  position: relative;
+
+  &:last-child {
+    margin-bottom: 40px;
+  }
+
+  &::before {
+    content: "•";
+    position: absolute;
+    left: 20px;
+    color: #8BC34A;
   }
 `;
 
-const Subtitle = styled.p`
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.6;
-  margin-bottom: 40px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+const HighlightText = styled.span`
+  color: #8BC34A;
+  font-weight: 600;
 `;
 
-const ContentWrapper = styled.div`
-  position: relative;
-  z-index: 1;
+const ContentSection = styled.div`
+  margin-bottom: 20px;
 `;
 
 const About = () => {
   return (
     <AboutContainer>
-      <Header
+      <AboutHeader
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <Title>About Dropship India</Title>
-        <Subtitle>
-          We're revolutionizing e-commerce fulfillment with cutting-edge technology
-          and seamless integration. Our platform empowers businesses to scale efficiently
-          while maintaining quality and reliability.
-        </Subtitle>
-      </Header>
-      <ContentWrapper>
+        <AboutTitle>About Dropship India</AboutTitle>
+        <AboutDescription>
+          <DescriptionParagraph>
+            Dropship India, a <HighlightText>Citymall subsidiary</HighlightText> is India's fastest-growing dropshipping platform & the smart choice for all eCommerce entrepreneurs.
+          </DescriptionParagraph>
+          
+          <DescriptionParagraph>
+            Built by professionals, Dropship India currently works with <HighlightText>150+ dropshippers</HighlightText> & <HighlightText>>40,000 orders daily</HighlightText>.
+          </DescriptionParagraph>
+
+          <DescriptionParagraph>
+            <HighlightText>Wide range of products</HighlightText> with highest profit margins
+          </DescriptionParagraph>
+
+          <DescriptionParagraph>
+            <HighlightText>End to end order delivery</HighlightText> and fulfilment
+          </DescriptionParagraph>
+
+          <DescriptionParagraph>
+            <HighlightText>Transparency & Trust</HighlightText>
+          </DescriptionParagraph>
+        </AboutDescription>
+      </AboutHeader>
+      <ContentSection>
         <AboutTiles />
-      </ContentWrapper>
+      </ContentSection>
+      <ContentSection>
+        <AboutAnalytics />
+      </ContentSection>
     </AboutContainer>
   );
 };
