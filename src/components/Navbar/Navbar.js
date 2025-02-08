@@ -336,7 +336,7 @@ const Navbar = () => {
             <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
               <NavButton component={Link} to="/">Home</NavButton>
               <NavButton component={Link} to="/products">Products</NavButton>
-              <NavButton component={Link} to="/explore">Explore</NavButton>
+              <NavButton component={Link} to="/services">Services</NavButton>
               <NavButton component={Link} to="/about">About</NavButton>
               <NavButton component={Link} to="/team">Team</NavButton>
               <NavButton component={Link} to="/contact">Contact</NavButton>

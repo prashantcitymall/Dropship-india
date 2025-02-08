@@ -1,5 +1,6 @@
 import React from 'react';
 import ElectricField from './components/ElectricField/ElectricField';
+import Capabilities from './components/Capabilities/Capabilities';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
@@ -18,8 +19,9 @@ function App() {
           <Route path="/" element={
             <>
               <div className="home-page" />
-              <ElectricField />
               <Hero />
+              <Products />
+              <Capabilities />
               <Footer />
             </>
           } />
@@ -29,11 +31,10 @@ function App() {
               <Products />
             </>
           } />
-          <Route path="/explore" element={
+          <Route path="/services" element={
             <>
               <div className="other-page" />
               <Shipping />
-              <Footer />
             </>
           } />
           <Route path="/about" element={

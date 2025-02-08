@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Grid, Typography, Box } from '@mui/material';
 import styled, { keyframes } from 'styled-components';
 import './Products.css';
@@ -18,6 +18,17 @@ const glowPulse = keyframes`
 const scanline = keyframes`
   0% { transform: translateY(-100%); }
   100% { transform: translateY(100%); }
+`;
+
+const slideUp = keyframes`
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
 const ProductsWrapper = styled.div`
@@ -52,14 +63,14 @@ const ProductsWrapper = styled.div`
   }
 `;
 
-const HeroSection = styled.div`
-  position: relative;
-  padding: 60px 0;
-  text-align: center;
-  margin-bottom: 80px;
+const ProductSection = styled.section`
+  margin-bottom: 120px;
+  opacity: 0;
+  animation: ${slideUp} 0.8s ease forwards;
+  animation-delay: ${props => props.delay}s;
 `;
 
-const Title = styled(Typography)`
+const MainTitle = styled(Typography)`
   color: #ffffff;
   font-size: 3.5rem;
   font-weight: 700;
@@ -84,12 +95,29 @@ const Title = styled(Typography)`
   }
 `;
 
-const Subtitle = styled(Typography)`
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1.2rem;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
+const CategoryTitle = styled(Typography)`
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #00F5A0, #00D9F5);
+  }
+
+  @media (max-width: 960px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -183,64 +211,165 @@ const Products = () => {
     grid.className = 'cyber-grid';
     document.querySelector('.products-wrapper')?.appendChild(grid);
 
-    // Add scanline effect to image container
-    const scanline = document.createElement('div');
-    scanline.className = 'scanline';
-    document.querySelector('.image-container')?.appendChild(scanline);
-
     return () => {
       grid.remove();
-      scanline.remove();
     };
   }, []);
 
   return (
     <ProductsWrapper className="products-wrapper">
       <Container maxWidth="lg">
-        <HeroSection className="products-enter">
-          <Title variant="h1" className="text-glow">
+        <ProductSection delay={0}>
+          <Typography variant="h1" className="text-glow main-title">
             Our Products
-          </Title>
-          <Subtitle variant="h5">
-            Discover our cutting-edge dropshipping solutions designed to revolutionize your e-commerce business
-          </Subtitle>
-        </HeroSection>
+          </Typography>
+          <ImageContainer className="image-container">
+            <ProductImage 
+              src="/images/products.png" 
+              alt="Dropship India Products" 
+            />
+          </ImageContainer>
+          <FeatureGrid container spacing={4}>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">Automated Sourcing</FeatureTitle>
+                <FeatureDescription>
+                  AI-powered product sourcing that automatically finds the best suppliers with competitive prices and reliable shipping times.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">Smart Inventory</FeatureTitle>
+                <FeatureDescription>
+                  Real-time inventory management system with predictive analytics to prevent stockouts and optimize your product lineup.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">One-Click Integration</FeatureTitle>
+                <FeatureDescription>
+                  Seamlessly connect with popular e-commerce platforms and manage all your stores from a single dashboard.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+          </FeatureGrid>
+        </ProductSection>
 
-        <ImageContainer className="image-container hover-scale">
-          <ProductImage 
-            src="/images/products.png" 
-            alt="Dropship India Products" 
-          />
-        </ImageContainer>
+        <ProductSection delay={0.2}>
+          <Typography variant="h2" className="text-glow category-title">
+            Kitchen Essentials
+          </Typography>
+          <ImageContainer className="image-container">
+            <ProductImage 
+              src="/images/kitchen.png" 
+              alt="Kitchen Products" 
+            />
+          </ImageContainer>
+          <FeatureGrid container spacing={4}>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">Premium Quality</FeatureTitle>
+                <FeatureDescription>
+                  High-grade materials and expert craftsmanship ensure long-lasting durability and performance.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">Modern Design</FeatureTitle>
+                <FeatureDescription>
+                  Contemporary aesthetics meet functionality, perfect for modern kitchen spaces.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">Easy Maintenance</FeatureTitle>
+                <FeatureDescription>
+                  Designed for easy cleaning and maintenance, saving time and effort.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+          </FeatureGrid>
+        </ProductSection>
 
-        <FeatureGrid container spacing={4} className="feature-grid">
-          <Grid item xs={12} md={4}>
-            <FeatureBox className="feature-box-hover feature-highlight">
-              <FeatureTitle className="text-glow">Automated Sourcing</FeatureTitle>
-              <FeatureDescription>
-                AI-powered product sourcing that automatically finds the best suppliers with competitive prices and reliable shipping times.
-              </FeatureDescription>
-            </FeatureBox>
-          </Grid>
+        <ProductSection delay={0.4}>
+          <Typography variant="h2" className="text-glow category-title">
+            Fresh Products
+          </Typography>
+          <ImageContainer className="image-container">
+            <ProductImage 
+              src="/images/fresh.png" 
+              alt="Fresh Products" 
+            />
+          </ImageContainer>
+          <FeatureGrid container spacing={4}>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">Farm Fresh</FeatureTitle>
+                <FeatureDescription>
+                  Direct from farms to your doorstep, ensuring maximum freshness and quality.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">Quality Assured</FeatureTitle>
+                <FeatureDescription>
+                  Rigorous quality checks and premium selection process for the best products.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">Express Delivery</FeatureTitle>
+                <FeatureDescription>
+                  Swift delivery system to ensure products reach you at their freshest.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+          </FeatureGrid>
+        </ProductSection>
 
-          <Grid item xs={12} md={4}>
-            <FeatureBox className="feature-box-hover feature-highlight">
-              <FeatureTitle className="text-glow">Smart Inventory</FeatureTitle>
-              <FeatureDescription>
-                Real-time inventory management system with predictive analytics to prevent stockouts and optimize your product lineup.
-              </FeatureDescription>
-            </FeatureBox>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <FeatureBox className="feature-box-hover feature-highlight">
-              <FeatureTitle className="text-glow">One-Click Integration</FeatureTitle>
-              <FeatureDescription>
-                Seamlessly connect with popular e-commerce platforms and manage all your stores from a single dashboard.
-              </FeatureDescription>
-            </FeatureBox>
-          </Grid>
-        </FeatureGrid>
+        <ProductSection delay={0.6}>
+          <Typography variant="h2" className="text-glow category-title">
+            Electronics
+          </Typography>
+          <ImageContainer className="image-container">
+            <ProductImage 
+              src="/images/electronics.png" 
+              alt="Electronics Products" 
+            />
+          </ImageContainer>
+          <FeatureGrid container spacing={4}>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">Latest Technology</FeatureTitle>
+                <FeatureDescription>
+                  Cutting-edge electronics with advanced features and specifications.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">Warranty Covered</FeatureTitle>
+                <FeatureDescription>
+                  Extended warranty and reliable after-sales service for peace of mind.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FeatureBox className="feature-box-hover">
+                <FeatureTitle className="text-glow">Smart Features</FeatureTitle>
+                <FeatureDescription>
+                  IoT-enabled devices with smart connectivity and automation capabilities.
+                </FeatureDescription>
+              </FeatureBox>
+            </Grid>
+          </FeatureGrid>
+        </ProductSection>
       </Container>
     </ProductsWrapper>
   );

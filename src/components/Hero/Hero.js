@@ -193,10 +193,10 @@ const Hero = () => {
           </Typography>
           <ExploreButton 
             variant="contained"
-            onClick={() => navigate('/explore')}
+            onClick={() => navigate('/services')}
             sx={{ marginLeft: '25%' }}
           >
-            Explore Now
+            Our Services
             <span className="arrow">→</span>
           </ExploreButton>
         </ButtonWrapper>

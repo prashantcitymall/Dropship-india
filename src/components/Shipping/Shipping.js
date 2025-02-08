@@ -1,7 +1,6 @@
 import React from 'react';
 import './Shipping.css';
-
-
+import Capabilities from '../Capabilities/Capabilities';
 
 const originalShippingData = [
   {
@@ -57,12 +56,20 @@ const additionalShippingData = [
   }
 ];
 
+const partnerLogos = [
+  { id: 1, src: "/images/ekart.png", alt: "Ekart" },
+  { id: 2, src: "/images/blue.png", alt: "Blue Dart" },
+  { id: 3, src: "/images/del.png", alt: "Delhivery" },
+  { id: 4, src: "/images/express.png", alt: "Express" },
+  { id: 5, src: "/images/shadow.png", alt: "Shadowfax" },
+];
+
 const Shipping = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
       <section className="shipping-section original-shipping" style={{ marginBottom: '0', paddingBottom: '0' }}>
         <div className="shipping-container">
-          <h2 className="shipping-title">Shipping</h2>
+          <h2 className="shipping-title">Shipping & Sourcing</h2>
           <div className="shipping-cards">
             {originalShippingData.map((item) => (
               <div key={item.id} className="shipping-card">
@@ -115,6 +122,31 @@ const Shipping = () => {
           </div>
         </div>
       </section>
+
+      <section className="partners-section">
+        <h2 className="partners-title">Our Delivery Partners</h2>
+        <div className="partners-carousel">
+          <div className="partners-track">
+            {/* First set of cards */}
+            {partnerLogos.map((logo) => (
+              <div key={logo.id} className="partner-card">
+                <img src={logo.src} alt={logo.alt} draggable="false" />
+              </div>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {partnerLogos.map((logo) => (
+              <div key={`${logo.id}-dup`} className="partner-card">
+                <img src={logo.src} alt={logo.alt} draggable="false" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Adding Capabilities section */}
+      <div className="capabilities-wrapper" style={{ marginTop: '40px' }}>
+        <Capabilities />
+      </div>
     </div>
   );
 };
