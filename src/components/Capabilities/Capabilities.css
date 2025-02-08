@@ -1,6 +1,6 @@
 .capabilities-section {
-  padding: 80px 0;
-  background: linear-gradient(135deg, #000000, #0A0A0A, #141414);
+  padding: 60px 20px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,1) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -15,14 +15,8 @@
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 
-.capabilities-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
 .capabilities-title {
-  text-align: center;
+  text-align: left;
   font-size: 2.5rem;
   color: #ffffff;
   margin-bottom: 50px;
@@ -30,25 +24,28 @@
   letter-spacing: 2px;
   position: relative;
   display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0%;
+  transform: translateX(0%);
+  padding-left: 20px;
 }
 
 .capabilities-title::after {
   content: '';
   position: absolute;
   bottom: -10px;
-  left: 0;
-  width: 100%;
+  left: 20px;
+  width: calc(100% - 20px);
   height: 2px;
-  background: linear-gradient(90deg, transparent, #ffffff, transparent);
+  background: linear-gradient(90deg, #ffffff, transparent);
 }
 
 .capabilities-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
-  justify-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .capability-card {
@@ -59,6 +56,11 @@
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 200px;
   width: 100%;
   max-width: 280px;
   cursor: pointer;
@@ -94,61 +96,38 @@
 }
 
 .capability-icon {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.icon {
-  width: 100%;
-  height: 100%;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
   fill: none;
-  stroke: #00f5a0;
-  stroke-width: 1;
+  stroke: currentColor;
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+  color: #0066FF;
+  filter: drop-shadow(0 0 8px rgba(0, 102, 255, 0.3));
   transition: all 0.3s ease;
 }
 
-.capability-card:hover .icon {
-  stroke: #00f5a0;
-  filter: drop-shadow(0 0 8px rgba(0, 245, 160, 0.5));
+.capability-card:hover .capability-icon {
   transform: scale(1.1);
-}
-
-@keyframes iconGlow {
-  0% {
-    filter: drop-shadow(0 0 5px rgba(0, 245, 160, 0.5));
-  }
-  50% {
-    filter: drop-shadow(0 0 10px rgba(0, 245, 160, 0.7));
-  }
-  100% {
-    filter: drop-shadow(0 0 5px rgba(0, 245, 160, 0.5));
-  }
+  filter: drop-shadow(0 0 12px rgba(0, 102, 255, 0.5));
+  color: #1a75ff;
 }
 
 .capability-title {
   color: #ffffff;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin: 0;
   font-weight: 500;
+  letter-spacing: 1px;
+  white-space: pre-line;
   line-height: 1.4;
-  transition: all 0.3s ease;
-}
-
-.capability-card:hover .capability-title {
-  color: #00f5a0;
-  text-shadow: 0 0 10px rgba(0, 245, 160, 0.3);
 }
 
 @media (max-width: 768px) {
   .capabilities-section {
-    padding: 60px 0;
+    padding: 40px 15px;
   }
 
   .capabilities-title {
@@ -158,10 +137,21 @@
   .capabilities-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
+    padding: 0 10px;
   }
 
   .capability-card {
     padding: 20px;
+  }
+
+  .capability-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+  }
+
+  .capability-title {
+    font-size: 1.1rem;
   }
 }
 

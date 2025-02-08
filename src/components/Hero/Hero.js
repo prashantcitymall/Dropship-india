@@ -3,26 +3,6 @@ import { Container, Typography, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
-const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: none;
-  z-index: -1;
-`;
-
-const HeroSection = styled(Box)`
-  color: white;
-  padding: 100px 0;
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
-  background: transparent;
-  will-change: transform;
-`;
-
 const glowText = keyframes`
   0% { text-shadow: 0 0 10px rgba(65, 105, 225, 0.3), 0 0 20px rgba(65, 105, 225, 0.3); }
   50% { text-shadow: 0 0 20px rgba(65, 105, 225, 0.5), 0 0 30px rgba(65, 105, 225, 0.5); }
@@ -40,167 +20,237 @@ const slideUp = keyframes`
   }
 `;
 
-const TextContainer = styled.div`
+const HeroSection = styled(Box)`
+  color: white;
+  padding: 100px 0;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ContentWrapper = styled.div`
   text-align: center;
-  margin-top: 120px;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
 `;
 
-const gradientMove = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
-
-const MainTitle = styled(Typography)`
-  font-size: 4rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #ffffff 0%, #4169E1 50%, #00ff88 100%);
-  background-size: 200% auto;
+const MainTitle = styled.h1`
+  font-size: 4.5rem;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #8BC34A 0%, #4CAF50 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
-  opacity: 0;
-  animation: 
-    ${slideUp} 0.8s ease forwards,
-    ${gradientMove} 8s ease infinite;
+  animation: ${slideUp} 0.8s ease-out;
   text-align: center;
-  will-change: transform, opacity;
-  transform: translateZ(0);
+
+  span {
+    color: #1976D2;
+    -webkit-text-fill-color: #1976D2;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 
-const SubTitle = styled(Typography)`
-  font-size: 3.2rem;
-  font-weight: 700;
-  color: white;
-  line-height: 1.2;
-  margin: 30px 0;
-  opacity: 0;
-  animation: 
-    ${slideUp} 0.8s ease forwards ${props => props.delay}s,
-    ${glowText} 3s ease-in-out infinite ${props => props.delay + 0.8}s;
-  will-change: transform, opacity;
-  transform: translateZ(0);
-`;
-
-const Description = styled(Typography)`
-  font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 800px;
-  margin: 60px auto;
-  opacity: 0;
-  animation: ${slideUp} 0.8s ease forwards ${props => props.delay}s;
-  line-height: 1.5;
-  text-align: center;
-  position: absolute;
-  left: 50%;
-  top: 60%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  padding: 0 20px;
-  will-change: transform, opacity;
-  transform: translateZ(0);
-`;
-
-const HeroSubtitle = styled(Typography)`
-  font-size: 1.5rem;
+const SubTitle = styled.h2`
+  font-size: 2.2rem;
   margin-bottom: 40px;
+  color: #333;
+  line-height: 1.4;
+  animation: ${slideUp} 0.8s ease-out 0.2s backwards;
   text-align: center;
-  will-change: transform, opacity;
-  transform: translateZ(0);
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
 `;
 
-const ButtonWrapper = styled(Box)`
-  position: absolute;
-  left: 50%;
-  top: 82%;
-  transform: translate(-50%, -50%);
-`;
-
-const ExploreButton = styled(Button)`
+const GetStartedButton = styled(Button)`
   && {
-    background-color: rgba(255, 255, 255, 0.1);
+    background: #4CAF50;
     color: white;
-    padding: 15px 40px;
+    padding: 12px 30px;
     font-size: 1.2rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50px;
-    backdrop-filter: blur(5px);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    border-radius: 30px;
     text-transform: none;
     transition: all 0.3s ease;
-    will-change: transform;
-    transform: translateZ(0);
+    height: 48px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    margin: 0;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.5);
+      background: #43A047;
       transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    }
+  }
+`;
+
+const PremiumButton = styled(Button)`
+  && {
+    background: linear-gradient(135deg, #FF4081 0%, #E91E63 100%);
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    text-transform: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    height: 48px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    margin: 0;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: 0.5s;
     }
 
-    .arrow {
-      font-size: 24px;
-      margin-left: 5px;
-      transition: transform 0.3s ease;
-    }
+    &:hover {
+      background: linear-gradient(135deg, #E91E63 0%, #D81B60 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
 
-    &:hover .arrow {
-      transform: translateX(5px);
+      &:before {
+        left: 100%;
+      }
+    }
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
+  animation: ${slideUp} 0.8s ease-out 0.4s backwards;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    gap: 15px;
+  }
+`;
+
+const IntegrationSection = styled.div`
+  margin-top: 60px;
+  animation: ${slideUp} 0.8s ease-out 0.6s backwards;
+
+  h3 {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+`;
+
+const LogoGrid = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px;
+
+  img {
+    height: 40px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+`;
+
+const LogoText = styled.span`
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    ${LogoText} {
+      opacity: 1;
+    }
+    img {
+      opacity: 1;
+      transform: scale(1.05);
     }
   }
 `;
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
   return (
     <HeroSection>
-
-      <Overlay />
-      <Container>
-        <TextContainer>
-          <MainTitle variant="h1" className={isVisible ? 'visible' : ''}>
-            Dropship India
-          </MainTitle>
-          <SubTitle variant="h2" delay={0.3} className={isVisible ? 'visible' : ''}>
-            Source Anything,
-          </SubTitle>
-          <SubTitle variant="h2" delay={0.6} className={isVisible ? 'visible' : ''}>
-            Ship Everything
-          </SubTitle>
-
-        </TextContainer>
-        <ButtonWrapper>
-          <Typography
-            variant="h6"
-            sx={{
-              color: '#fff',
-              marginBottom: '20px',
-              textAlign: 'center',
-              fontWeight: 500,
-              textShadow: '0 2px 4px rgba(0,0,0,0.3)'
-            }}
-          >
-            Become a part of India's fastest growing dropshipping platform!
-          </Typography>
-          <ExploreButton 
+      <ContentWrapper>
+        <MainTitle>
+          Make Drop<span>shipping</span> Easy
+        </MainTitle>
+        <SubTitle>
+          Revolutionize eCommerce with AI-Powered<br />
+          Automation and Digital Product Creation
+        </SubTitle>
+        <ButtonGroup>
+          <GetStartedButton 
             variant="contained"
             onClick={() => navigate('/services')}
-            sx={{ marginLeft: '25%' }}
           >
             Our Services
-            <span className="arrow">→</span>
-          </ExploreButton>
-        </ButtonWrapper>
-      </Container>
+          </GetStartedButton>
+          <PremiumButton
+            variant="contained"
+            onClick={() => window.open('https://apps.shopify.com/dropship-india', '_blank')}
+          >
+            Unlock Premium Benefits Now
+          </PremiumButton>
+        </ButtonGroup>
+        <IntegrationSection>
+          <h3>Dropship India INTEGRATES WITH...</h3>
+          <LogoGrid>
+            <LogoContainer>
+              <img src="/images/shopify.png" alt="Shopify" />
+              <LogoText>Shopify</LogoText>
+            </LogoContainer>
+          </LogoGrid>
+        </IntegrationSection>
+      </ContentWrapper>
     </HeroSection>
   );
 };

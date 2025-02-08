@@ -8,6 +8,7 @@ import Products from './components/Products/Products';
 import Shipping from './components/Shipping/Shipping';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
+import About from './pages/About';
 import './App.css';
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
           <Route path="/about" element={
             <>
               <div className="other-page" />
-              <div>About Us Page</div>
+              <About />
               <Footer />
             </>
           } />
@@ -53,6 +54,7 @@ function App() {
           } />
           <Route path="/contact" element={
             <>
+              <div className="other-page" />
               <Contact />
               <Footer />
             </>
