@@ -244,6 +244,7 @@ const AuthButton = styled(Button)`
     background: rgba(10, 10, 20, 0.3);
     color: #fff;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    margin-right: 16px;
     
     &:hover {
       transform: translateY(-2px) scale(1.02);
@@ -285,18 +286,12 @@ const AuthButton = styled(Button)`
     margin-right: 6px;
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
   }
+
+  &.outlined {
     border: 1px solid rgba(255, 255, 255, 0.2);
     &:hover {
       border-color: rgba(255, 255, 255, 0.4);
       background: rgba(255, 255, 255, 0.05);
-    }
-  }
-
-  &.signup {
-    color: var(--primary-dark);
-    background: var(--text-primary);
-    &:hover {
-      background: rgba(255, 255, 255, 0.9);
     }
   }
 
@@ -307,8 +302,8 @@ const AuthButton = styled(Button)`
 `;
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -318,79 +313,55 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
-  React.useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      setIsScrolled(offset > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
-    <>
-      <HeaderWrapper isScrolled={isScrolled}>
-        <StyledAppBar position="static">
-          <Container maxWidth="xl">
-            <Toolbar style={{ justifyContent: 'space-between', minHeight: '80px', padding: '8px 0' }}>
-              <LeftNav>
-                <NavButton component={Link} to="/">Home</NavButton>
-                <NavButton component={Link} to="/products">Products</NavButton>
-                <NavButton 
-                  aria-controls="company-menu"
-                  aria-haspopup="true"
-                  onClick={handleClick}
-                  endIcon={<KeyboardArrowDownIcon />}
-                >
-                  Company
-                </NavButton>
-                <Menu
-                  id="company-menu"
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                  PaperProps={{
-                    style: {
-                      backgroundColor: 'var(--secondary-dark)',
-                      color: 'var(--text-primary)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      borderRadius: '8px',
-                      marginTop: '8px'
-                    }
-                  }}
-                >
-                  <MenuItem onClick={handleClose} component={Link} to="/about" style={{ fontSize: '0.9rem' }}>About Us</MenuItem>
-                  <MenuItem onClick={handleClose} component={Link} to="/team" style={{ fontSize: '0.9rem' }}>Our Team</MenuItem>
-                  <MenuItem onClick={handleClose} component={Link} to="/careers" style={{ fontSize: '0.9rem' }}>Careers</MenuItem>
-                </Menu>
-              </LeftNav>
-              
-              <LogoContainer>
-                <Link to="/">
-                  <Logo src={process.env.PUBLIC_URL + '/dropship-logo.svg'} alt="Dropship India" />
-                </Link>
-              </LogoContainer>
-              
-              <RightNav>
-                <NavButton component={Link} to="/contact">Contact Us</NavButton>
-                <AuthButton className="login" variant="contained" component={Link} to="/login">
-                  <PersonOutlineIcon className="icon" fontSize="small" />
-                  Login
-                </AuthButton>
-                <AuthButton className="signup" variant="contained" component={Link} to="/signup">
-                  Sign up
-                </AuthButton>
-              </RightNav>
-            </Toolbar>
-          </Container>
-        </StyledAppBar>
-        <BorderLine />
-      </HeaderWrapper>
-    </>
+    <HeaderWrapper>
+      <StyledAppBar position="static">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Typography
+                variant="h6"
+                noWrap
+                sx={{
+                  mr: 2,
+                  fontWeight: 700,
+                  color: 'white',
+                  textDecoration: 'none',
+                }}
+              >
+                DROPSHIP INDIA
+              </Typography>
+            </Link>
+
+            <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+              <NavButton component={Link} to="/">Home</NavButton>
+              <NavButton component={Link} to="/products">Products</NavButton>
+              <NavButton component={Link} to="/explore">Explore</NavButton>
+              <NavButton component={Link} to="/about">About</NavButton>
+              <NavButton component={Link} to="/team">Team</NavButton>
+              <NavButton component={Link} to="/contact">Contact</NavButton>
+            </Box>
+
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <AuthButton
+                variant="outlined"
+                startIcon={<PersonOutlineIcon />}
+                className="login"
+              >
+                Sign In
+              </AuthButton>
+              <AuthButton
+                variant="contained"
+                className="signup"
+              >
+                Sign up
+              </AuthButton>
+            </Box>
+          </Toolbar>
+        </Container>
+      </StyledAppBar>
+      <BorderLine />
+    </HeaderWrapper>
   );
 };
 

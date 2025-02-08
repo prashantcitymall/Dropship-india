@@ -1,61 +1,110 @@
-import React from 'react';
-import './ElectricField.css';
+import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
+
+const Canvas = styled.canvas`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  will-change: transform;
+  transform: translateZ(0);
+`;
 
 const ElectricField = () => {
-  return (
-    <div className="electric-field">
-      <div className="hexagon-grid">
-        {[...Array(70)].map((_, index) => (
-          <div key={index} className="hexagon" style={{
-            '--delay': `${Math.random() * 3}s`,
-            '--x': `${(index % 9) * 12 - (Math.floor(index / 9) % 2) * 6}%`,
-            '--y': `${Math.floor(index / 9) * 11}%`,
-            '--pulse-delay': `${Math.random() * 5}s`,
-            '--rotation': `${Math.random() * 360}deg`
-          }} />
-        ))}
-      </div>
-      <div className="data-streams">
-        {[...Array(20)].map((_, index) => (
-          <div key={index} className="stream" style={{
-            '--delay': `${Math.random() * 4}s`,
-            '--duration': `${3 + Math.random() * 2}s`,
-            '--start': `${Math.random() * 100}%`,
-            '--width': `${100 + Math.random() * 200}px`,
-            '--angle': `${-45 + (Math.random() * 10 - 5)}deg`
-          }} />
-        ))}
-      </div>
-      <div className="connection-points">
-        {[...Array(25)].map((_, index) => (
-          <div key={index} className="point" style={{
-            '--x': `${Math.random() * 100}%`,
-            '--y': `${Math.random() * 100}%`,
-            '--size': `${4 + Math.random() * 3}px`,
-            '--connection-delay': `${Math.random() * 4}s`,
-            '--glow-intensity': `${0.8 + Math.random() * 0.4}`
-          }}>
-            <div className="pulse-ring" />
-            <div className="connection-line" style={{
-              '--angle': `${Math.random() * 360}deg`,
-              '--length': `${50 + Math.random() * 100}px`
-            }} />
-          </div>
-        ))}
-      </div>
-      <div className="cyber-particles">
-        {[...Array(40)].map((_, index) => (
-          <div key={index} className="cyber-particle" style={{
-            '--delay': `${Math.random() * 5}s`,
-            '--size': `${1 + Math.random() * 2}px`,
-            '--x': `${Math.random() * 100}%`,
-            '--y': `${Math.random() * 100}%`,
-            '--travel-distance': `${100 + Math.random() * 200}px`
-          }} />
-        ))}
-      </div>
-    </div>
-  );
+  const canvasRef = useRef(null);
+  const particles = useRef([]);
+  const animationFrameId = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    const initCanvas = () => {
+      canvas.width = width;
+      canvas.height = height;
+      particles.current = Array.from({ length: 50 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
+        alpha: Math.random() * 0.5 + 0.5
+      }));
+    };
+
+    const drawParticle = (particle) => {
+      ctx.beginPath();
+      const gradient = ctx.createRadialGradient(
+        particle.x, particle.y, 0,
+        particle.x, particle.y, particle.radius
+      );
+      gradient.addColorStop(0, `rgba(0, 245, 160, ${particle.alpha})`);
+      gradient.addColorStop(1, 'rgba(0, 245, 160, 0)');
+      ctx.fillStyle = gradient;
+      ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+      ctx.fill();
+    };
+
+    const connectParticles = (p1, p2) => {
+      const dx = p1.x - p2.x;
+      const dy = p1.y - p2.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < 150) {
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(0, 245, 160, ${0.2 * (1 - distance / 150)})`;
+        ctx.lineWidth = 0.5;
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+      }
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, width, height);
+      
+      particles.current.forEach((particle, i) => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        if (particle.x < 0 || particle.x > width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > height) particle.vy *= -1;
+
+        drawParticle(particle);
+
+        for (let j = i + 1; j < particles.current.length; j++) {
+          connectParticles(particle, particles.current[j]);
+        }
+      });
+
+      animationFrameId.current = requestAnimationFrame(animate);
+    };
+
+    const handleResize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      initCanvas();
+    };
+
+    initCanvas();
+    animate();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
+    };
+  }, []);
+
+  return <Canvas ref={canvasRef} />;
 };
 
 export default ElectricField;

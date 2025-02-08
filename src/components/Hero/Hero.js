@@ -3,15 +3,13 @@ import { Container, Typography, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
-
-
 const Overlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #9BAFD9 0%, #103783 100%);
+  background: none;
   z-index: -1;
 `;
 
@@ -22,7 +20,9 @@ const HeroSection = styled(Box)`
   position: relative;
   overflow: hidden;
   background: transparent;
+  will-change: transform;
 `;
+
 const glowText = keyframes`
   0% { text-shadow: 0 0 10px rgba(65, 105, 225, 0.3), 0 0 20px rgba(65, 105, 225, 0.3); }
   50% { text-shadow: 0 0 20px rgba(65, 105, 225, 0.5), 0 0 30px rgba(65, 105, 225, 0.5); }
@@ -43,6 +43,9 @@ const slideUp = keyframes`
 const TextContainer = styled.div`
   text-align: center;
   margin-top: 120px;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 `;
 
 const gradientMove = keyframes`
@@ -64,6 +67,8 @@ const MainTitle = styled(Typography)`
     ${slideUp} 0.8s ease forwards,
     ${gradientMove} 8s ease infinite;
   text-align: center;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 `;
 
 const SubTitle = styled(Typography)`
@@ -76,6 +81,8 @@ const SubTitle = styled(Typography)`
   animation: 
     ${slideUp} 0.8s ease forwards ${props => props.delay}s,
     ${glowText} 3s ease-in-out infinite ${props => props.delay + 0.8}s;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 `;
 
 const Description = styled(Typography)`
@@ -93,12 +100,16 @@ const Description = styled(Typography)`
   transform: translate(-50%, -50%);
   width: 100%;
   padding: 0 20px;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 `;
 
 const HeroSubtitle = styled(Typography)`
   font-size: 1.5rem;
   margin-bottom: 40px;
   text-align: center;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 `;
 
 const ButtonWrapper = styled(Box)`
@@ -122,7 +133,9 @@ const ExploreButton = styled(Button)`
     gap: 10px;
     text-transform: none;
     transition: all 0.3s ease;
-    
+    will-change: transform;
+    transform: translateZ(0);
+
     &:hover {
       background-color: rgba(255, 255, 255, 0.2);
       border-color: rgba(255, 255, 255, 0.5);

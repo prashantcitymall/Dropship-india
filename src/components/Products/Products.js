@@ -1,223 +1,248 @@
-import React from 'react';
-import { Container, Box, Typography, Grid } from '@mui/material';
-import styled from 'styled-components';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import SearchIcon from '@mui/icons-material/Search';
-import InventoryIcon from '@mui/icons-material/Inventory';
-import HandshakeIcon from '@mui/icons-material/Handshake';
-import WarehouseIcon from '@mui/icons-material/Warehouse';
-import PaymentsIcon from '@mui/icons-material/Payments';
-import LanguageIcon from '@mui/icons-material/Language';
-import SellIcon from '@mui/icons-material/Sell';
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import React, { useEffect, useRef } from 'react';
+import { Container, Grid, Typography, Box } from '@mui/material';
+import styled, { keyframes } from 'styled-components';
+import './Products.css';
 
-
-
-
-
-const ServiceSection = styled(Box)`
-  padding: 80px 0;
-  background: #1976D2;
-  color: white;
-  position: relative;
-  z-index: 1;
+const float = keyframes`
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
 `;
 
-const ServiceTitle = styled(Typography)`
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  color: white;
-  
-  svg {
+const glowPulse = keyframes`
+  0% { box-shadow: 0 0 20px rgba(0, 245, 160, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(0, 245, 160, 0.5); }
+  100% { box-shadow: 0 0 20px rgba(0, 245, 160, 0.3); }
+`;
+
+const scanline = keyframes`
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+`;
+
+const ProductsWrapper = styled.div`
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000000, #0A0A0A, #141414);
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00F5A0, #00D9F5);
+    opacity: 0.5;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(0, 245, 160, 0.1), transparent 25%),
+      radial-gradient(circle at 80% 80%, rgba(0, 217, 245, 0.1), transparent 25%);
+    pointer-events: none;
+  }
+`;
+
+const HeroSection = styled.div`
+  position: relative;
+  padding: 60px 0;
+  text-align: center;
+  margin-bottom: 80px;
+`;
+
+const Title = styled(Typography)`
+  color: #ffffff;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #00F5A0, #00D9F5);
+  }
+
+  @media (max-width: 960px) {
     font-size: 2.5rem;
   }
 `;
 
-const FeatureCard = styled(Box)`
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
+const Subtitle = styled(Typography)`
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 60px auto;
+  border-radius: 20px;
   padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  animation: ${glowPulse} 4s infinite;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, #00F5A0, #00D9F5);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 0%,
+      rgba(0, 245, 160, 0.1) 50%,
+      transparent 100%
+    );
+    animation: ${scanline} 4s linear infinite;
+    pointer-events: none;
+  }
+`;
+
+const ProductImage = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  animation: ${float} 6s ease-in-out infinite;
+  transform-origin: center center;
+`;
+
+const FeatureGrid = styled(Grid)`
+  margin-top: 100px;
+`;
+
+const FeatureBox = styled(Box)`
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  padding: 30px;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: transform 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(0, 245, 160, 0.3);
   }
 `;
 
-const FeatureIcon = styled(Box)`
-  svg {
-    font-size: 2rem;
-    color: white;
-  }
+const FeatureTitle = styled(Typography)`
+  color: #00F5A0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
 `;
 
-const FeatureCardTitle = styled(Typography)`
-  font-weight: 500;
-  font-size: 1.1rem;
-  color: white;
+const FeatureDescription = styled(Typography)`
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
 `;
 
 const Products = () => {
+  useEffect(() => {
+    // Add cyber grid effect
+    const grid = document.createElement('div');
+    grid.className = 'cyber-grid';
+    document.querySelector('.products-wrapper')?.appendChild(grid);
+
+    // Add scanline effect to image container
+    const scanline = document.createElement('div');
+    scanline.className = 'scanline';
+    document.querySelector('.image-container')?.appendChild(scanline);
+
+    return () => {
+      grid.remove();
+      scanline.remove();
+    };
+  }, []);
+
   return (
-    <>
+    <ProductsWrapper className="products-wrapper">
+      <Container maxWidth="lg">
+        <HeroSection className="products-enter">
+          <Title variant="h1" className="text-glow">
+            Our Products
+          </Title>
+          <Subtitle variant="h5">
+            Discover our cutting-edge dropshipping solutions designed to revolutionize your e-commerce business
+          </Subtitle>
+        </HeroSection>
 
+        <ImageContainer className="image-container hover-scale">
+          <ProductImage 
+            src="/images/products.png" 
+            alt="Dropship India Products" 
+          />
+        </ImageContainer>
 
-      <ServiceSection>
-        <Container>
-          <ServiceTitle variant="h2">
-            <LocalShippingIcon /> Shipping
-          </ServiceTitle>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={4}>
-              <FeatureCard>
-                <FeatureIcon>
-                  <HandshakeIcon />
-                </FeatureIcon>
-                <FeatureCardTitle>
-                  Trusted Delivery partners
-                </FeatureCardTitle>
-                <Typography variant="body2">
-                  DELHIVERY, BLUE DART, EKART
-                </Typography>
-              </FeatureCard>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <FeatureCard>
-                <FeatureIcon>
-                  <LocalShippingIcon />
-                </FeatureIcon>
-                <FeatureCardTitle>
-                  Road, Rail & Air Freight
-                </FeatureCardTitle>
-                <Typography variant="body2">
-                  capabilities for reducing delivery TATs
-                </Typography>
-              </FeatureCard>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <FeatureCard>
-                <FeatureIcon>
-                  <CheckCircleIcon />
-                </FeatureIcon>
-                <FeatureCardTitle>
-                  Best in class delivery %
-                </FeatureCardTitle>
-                <Typography variant="body2">
-                  with 95% orders delivered in less than 5 days
-                </Typography>
-              </FeatureCard>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <FeatureCard>
-                <FeatureIcon>
-                  <WarehouseIcon />
-                </FeatureIcon>
-                <FeatureCardTitle>
-                  Own supply chain
-                </FeatureCardTitle>
-                <Typography variant="body2">
-                  with 5 lac+ sq. ft warehouse space
-                </Typography>
-              </FeatureCard>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <FeatureCard>
-                <FeatureIcon>
-                  <PaymentsIcon />
-                </FeatureIcon>
-                <FeatureCardTitle>
-                  Pan India COD Remittance
-                </FeatureCardTitle>
-                <Typography variant="body2">
-                  with coverage across 27000+ pincodes
-                </Typography>
-              </FeatureCard>
-            </Grid>
+        <FeatureGrid container spacing={4} className="feature-grid">
+          <Grid item xs={12} md={4}>
+            <FeatureBox className="feature-box-hover feature-highlight">
+              <FeatureTitle className="text-glow">Automated Sourcing</FeatureTitle>
+              <FeatureDescription>
+                AI-powered product sourcing that automatically finds the best suppliers with competitive prices and reliable shipping times.
+              </FeatureDescription>
+            </FeatureBox>
           </Grid>
-        </Container>
-      </ServiceSection>
 
-      <ServiceSection style={{ background: '#1565C0' }}>
-        <Container>
-          <ServiceTitle variant="h2">
-            <SearchIcon /> Sourcing
-          </ServiceTitle>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={4}>
-              <FeatureCard>
-                <FeatureIcon>
-                  <LanguageIcon />
-                </FeatureIcon>
-                <FeatureCardTitle>
-                  48-hours quick sourcing
-                </FeatureCardTitle>
-                <Typography variant="body2">
-                  for new products at unbeatable prices
-                </Typography>
-              </FeatureCard>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <FeatureCard>
-                <FeatureIcon>
-                  <InventoryIcon />
-                </FeatureIcon>
-                <FeatureCardTitle>
-                  60K+ High Quality Products
-                </FeatureCardTitle>
-              </FeatureCard>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <FeatureCard>
-                <FeatureIcon>
-                  <HandshakeIcon />
-                </FeatureIcon>
-                <FeatureCardTitle>
-                  Sourced from 8,500+
-                </FeatureCardTitle>
-                <Typography variant="body2">
-                  top manufacturers, importers and sellers
-                </Typography>
-              </FeatureCard>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <FeatureCard>
-                <FeatureIcon>
-                  <SellIcon />
-                </FeatureIcon>
-                <FeatureCardTitle>
-                  Minimum 30% better pricing
-                </FeatureCardTitle>
-                <Typography variant="body2">
-                  for products vs all other platforms
-                </Typography>
-              </FeatureCard>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <FeatureCard>
-                <FeatureIcon>
-                  <CardGiftcardIcon />
-                </FeatureIcon>
-                <FeatureCardTitle>
-                  Custom packaging options
-                </FeatureCardTitle>
-              </FeatureCard>
-            </Grid>
+          <Grid item xs={12} md={4}>
+            <FeatureBox className="feature-box-hover feature-highlight">
+              <FeatureTitle className="text-glow">Smart Inventory</FeatureTitle>
+              <FeatureDescription>
+                Real-time inventory management system with predictive analytics to prevent stockouts and optimize your product lineup.
+              </FeatureDescription>
+            </FeatureBox>
           </Grid>
-        </Container>
-      </ServiceSection>
-    </>
+
+          <Grid item xs={12} md={4}>
+            <FeatureBox className="feature-box-hover feature-highlight">
+              <FeatureTitle className="text-glow">One-Click Integration</FeatureTitle>
+              <FeatureDescription>
+                Seamlessly connect with popular e-commerce platforms and manage all your stores from a single dashboard.
+              </FeatureDescription>
+            </FeatureBox>
+          </Grid>
+        </FeatureGrid>
+      </Container>
+    </ProductsWrapper>
   );
 };
 

@@ -8,13 +8,21 @@ html, body {
   min-height: 100%;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .home-page {
   background: linear-gradient(135deg, #F5C900, #183182) !important;
   min-height: 100vh;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 0;
 }
 

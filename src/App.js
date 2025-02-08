@@ -5,6 +5,8 @@ import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Products from './components/Products/Products';
 import Shipping from './components/Shipping/Shipping';
+import Contact from './components/Contact/Contact';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
 function App() {
@@ -18,30 +20,40 @@ function App() {
               <div className="home-page" />
               <ElectricField />
               <Hero />
+              <Footer />
+            </>
+          } />
+          <Route path="/products" element={
+            <>
+              <div className="other-page" />
+              <Products />
             </>
           } />
           <Route path="/explore" element={
             <>
               <div className="other-page" />
               <Shipping />
+              <Footer />
             </>
           } />
           <Route path="/about" element={
             <>
               <div className="other-page" />
               <div>About Us Page</div>
+              <Footer />
             </>
           } />
           <Route path="/team" element={
             <>
               <div className="other-page" />
               <div>Team Page</div>
+              <Footer />
             </>
           } />
           <Route path="/contact" element={
             <>
-              <div className="other-page" />
-              <div>Contact Page</div>
+              <Contact />
+              <Footer />
             </>
           } />
         </Routes>
