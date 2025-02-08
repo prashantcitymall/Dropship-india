@@ -143,17 +143,6 @@
   );
 }
 
-.products-wrapper::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #00F5A0, #00D9F5);
-  opacity: 0.5;
-}
-
 .category-title {
   font-size: 37px !important;
   transform: scale(0.7);

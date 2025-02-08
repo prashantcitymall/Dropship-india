@@ -154,29 +154,41 @@ const ButtonGroup = styled.div`
 `;
 
 const IntegrationSection = styled.div`
-  margin-top: 60px;
-  animation: ${slideUp} 0.8s ease-out 0.6s backwards;
+  margin-top: 20px;
+  text-align: center;
 
   h3 {
-    color: #666;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    margin-bottom: 5px;
+    font-weight: normal;
   }
 `;
 
 const LogoGrid = styled.div`
   display: flex;
   justify-content: center;
+  gap: 20px;
+  margin-top: 5px;
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-top: 20px;
-  gap: 15px;
+  gap: 5px;
+  transition: all 0.3s ease;
 
   img {
-    height: 40px;
+    height: 30px;
+    width: auto;
     opacity: 0.8;
     transition: all 0.3s ease;
+  }
 
-    &:hover {
+  &:hover {
+    transform: translateY(-2px);
+    img {
       opacity: 1;
       transform: scale(1.05);
     }
@@ -193,24 +205,6 @@ const LogoText = styled.span`
 
   &:hover {
     opacity: 1;
-  }
-`;
-
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    ${LogoText} {
-      opacity: 1;
-    }
-    img {
-      opacity: 1;
-      transform: scale(1.05);
-    }
   }
 `;
 
