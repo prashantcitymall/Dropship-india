@@ -12,11 +12,11 @@ const FooterWrapper = styled.footer`
   position: relative;
   background: linear-gradient(135deg, #000000, #0A0A0A, #141414);
   color: #ffffff;
-  padding: 100px 0 40px;
+  padding: 70px 0 40px;
   overflow: hidden;
 
   @media (max-width: 960px) {
-    padding: 80px 0 30px;
+    padding: 60px 0 30px;
   }
 
   &:before {
@@ -48,14 +48,14 @@ const GlowingCard = styled.div`
   position: relative;
   background: rgba(255, 255, 255, 0.02);
   border-radius: 24px;
-  padding: 35px;
-  margin-bottom: 20px;
+  padding: 20px;
+  margin-bottom: 12px;
   transition: transform 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.05);
 
   @media (max-width: 960px) {
-    padding: 25px;
-    margin-bottom: 15px;
+    padding: 15px;
+    margin-bottom: 8px;
   }
 
   &:before {
@@ -93,11 +93,11 @@ const GlowingCard = styled.div`
 const FooterTitle = styled.h3`
   font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   color: #ffffff;
   position: relative;
   display: inline-block;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 
   &:after {
     content: '';
@@ -215,8 +215,8 @@ const SocialIcon = styled.a`
 `;
 
 const BottomBar = styled.div`
-  margin-top: 60px;
-  padding-top: 30px;
+  margin-top: 20px;
+  padding-top: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
   position: relative;
@@ -239,11 +239,40 @@ const HeartIcon = styled.span`
   margin: 0 5px;
 `;
 
+const GridContainer = styled(Grid)`
+  margin-top: -20px;
+`;
+
+const CitymallLogo = styled.div`
+  text-align: center;
+  margin: 0;
+  transform: translateX(-20%);
+  position: relative;
+  top: 20px;
+  
+  img {
+    height: 153px;
+    opacity: 1;
+    clip-path: inset(7% 0 0 0);
+    object-fit: cover;
+    object-position: center bottom;
+
+    @media (max-width: 768px) {
+      height: 128px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    transform: translateX(-10%);
+    top: 15px;
+  }
+`;
+
 const Footer = () => {
   return (
     <FooterWrapper>
       <Container maxWidth="lg">
-        <Grid container spacing={4}>
+        <GridContainer container spacing={3}>
           <Grid item xs={12} md={3}>
             <GlowingCard>
               <FooterTitle>PRODUCTS</FooterTitle>
@@ -279,8 +308,8 @@ const Footer = () => {
           <Grid item xs={12} md={3}>
             <GlowingCard>
               <FooterTitle>CONTACT US</FooterTitle>
-              <Box mb={4}>
-                <Typography variant="h6" style={{ color: '#ffffff', marginBottom: '12px', fontWeight: 'normal' }}>
+              <Box mb={1}>
+                <Typography variant="h6" style={{ color: '#ffffff', marginBottom: '4px', fontWeight: 'normal', fontSize: '1rem' }}>
                   Phone
                 </Typography>
                 <ClickableText 
@@ -290,8 +319,8 @@ const Footer = () => {
                   +91 9643532726, +91 7428229339
                 </ClickableText>
               </Box>
-              <Box mb={4}>
-                <Typography variant="h6" style={{ color: '#ffffff', marginBottom: '12px', fontWeight: 'normal' }}>
+              <Box mb={1}>
+                <Typography variant="h6" style={{ color: '#ffffff', marginBottom: '4px', fontWeight: 'normal', fontSize: '1rem' }}>
                   Email
                 </Typography>
                 <ClickableText 
@@ -301,8 +330,8 @@ const Footer = () => {
                   support@dropshipindia.live
                 </ClickableText>
               </Box>
-              <Box mb={4}>
-                <Typography variant="h6" style={{ color: '#ffffff', marginBottom: '12px', fontWeight: 'normal' }}>
+              <Box mb={1}>
+                <Typography variant="h6" style={{ color: '#ffffff', marginBottom: '4px', fontWeight: 'normal', fontSize: '1rem' }}>
                   Instagram
                 </Typography>
                 <ClickableText 
@@ -314,7 +343,11 @@ const Footer = () => {
               </Box>
             </GlowingCard>
           </Grid>
-        </Grid>
+        </GridContainer>
+
+        <CitymallLogo>
+          <img src="/images/citymall.png" alt="Citymall Logo" />
+        </CitymallLogo>
 
         <BottomBar>
           <Typography variant="body2" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
