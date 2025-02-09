@@ -75,17 +75,20 @@ const ChartContainer = styled.div`
   padding: 12px;
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  height: ${props => props.isMainChart ? '309px' : 'auto'};
+  height: ${props => props.isMainChart ? '309px' : '300px'};
   display: flex;
   flex-direction: column;
 `;
 
 const SmallChartContainer = styled(ChartContainer)`
-  height: 220px;
-  padding: 10px;
+  height: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   
   canvas {
-    max-height: 176px !important;
+    height: 220px !important;
+    width: 100% !important;
   }
 `;
 
@@ -98,7 +101,11 @@ const ChartTitle = styled.h3`
 
 const ChartWrapper = styled.div`
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 0;
+  
   canvas {
     max-height: 100% !important;
   }
@@ -107,9 +114,9 @@ const ChartWrapper = styled.div`
 const ChartsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  gap: 20px;
   max-width: 90%;
-  margin: 0 auto;
+  margin: 20px auto;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -256,12 +263,16 @@ const AboutAnalytics = () => {
 
   const doughnutOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+    cutout: '65%',
     plugins: {
       legend: {
         position: 'right',
+        align: 'center',
         labels: {
           color: 'rgba(255, 255, 255, 0.9)',
           padding: 10,
+          boxWidth: 12,
           font: {
             size: 11
           },
