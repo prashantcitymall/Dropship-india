@@ -1,7 +1,7 @@
 /* Original Shipping Section */
 .original-shipping {
   padding: 20px 20px 10px;
-  background: #0072C6;
+  background: #335da9;
   position: relative;
   z-index: 1;
   margin-top: 64px;
@@ -48,7 +48,7 @@
 }
 
 .original-shipping .shipping-card {
-  background: #0072C6;
+  background: #335da9;
   border-radius: 30px;
   padding: 30px;
   text-align: center;
@@ -99,7 +99,7 @@
 /* Additional Shipping Section */
 .additional-shipping {
   padding: 0;
-  background: #0072C6;
+  background: #335da9;
   position: relative;
   z-index: 1;
   margin: -10px 0 0;
@@ -185,7 +185,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0072C6;
+  background: #335da9;
   outline: none;
   border: none;
   overflow: hidden;
@@ -282,7 +282,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0072C6;
+  background: #335da9;
   outline: none;
   border: none;
   overflow: hidden;
@@ -403,116 +403,14 @@
   }
 }
 
-.partners-section {
-  padding: 40px 0 60px;
-  background: linear-gradient(180deg, 
-    rgba(0, 0, 0, 0.95) 0%,
-    rgba(0, 0, 0, 1) 50%,
-    transparent 100%
-  );
-  position: relative;
-  margin-top: -20px;
-}
-
-.partners-title {
-  text-align: left;
-  font-size: 2.5rem;
-  color: #ffffff;
-  margin-bottom: 40px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  position: relative;
-  display: inline-block;
-  left: 10%;
-  transform: translateX(-10%);
-  padding-left: 20px;
-}
-
-.partners-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 20px;
-  width: calc(100% - 20px);
-  height: 2px;
-  background: linear-gradient(90deg, #ffffff, transparent);
-}
-
-.partners-carousel {
-  width: 100%;
-  overflow: hidden;
-  padding: 20px 0;
-  position: relative;
-}
-
-.partners-track {
-  display: flex;
-  animation: scrollPartners 30s linear infinite;
-  gap: 40px;
-  padding: 0 20px;
-}
-
-.partner-card {
-  min-width: 200px;
-  height: 80px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-}
-
-.partner-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.partner-card img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  filter: brightness(0.9);
-  transition: filter 0.3s ease;
-}
-
-.partner-card:hover img {
-  filter: brightness(1);
-}
-
-@keyframes scrollPartners {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-240px * 5));
-  }
-}
-
 .capabilities-wrapper {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  position: relative;
-  z-index: 1;
+  width: 100%;
+  padding: 20px;
+  background: transparent;
 }
 
-@media (max-width: 768px) {
-  .partners-title {
-    font-size: 2rem;
-  }
-
-  .partners-carousel {
-    padding: 15px 0;
-  }
-
-  .partner-card {
-    min-width: 160px;
-    height: 60px;
-    padding: 10px;
-  }
+/* Ensure proper spacing */
+.capabilities-wrapper > div {
+  margin: 0 auto;
+  max-width: 1200px;
 }

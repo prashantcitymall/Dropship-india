@@ -1,6 +1,6 @@
 .capabilities-section {
   padding: 60px 20px;
-  background: linear-gradient(135deg, #0466c8, #023e7d, #002855);
+  background: #335da9;
   position: relative;
   overflow: hidden;
 }
@@ -47,11 +47,11 @@
 }
 
 .capability-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
   padding: 30px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   display: flex;
@@ -61,7 +61,6 @@
   min-height: 200px;
   width: 100%;
   max-width: 280px;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
 }
@@ -84,8 +83,6 @@
 
 .capability-card:hover {
   transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 

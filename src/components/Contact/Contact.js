@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Grid, Typography, TextField, Button, Box } from '@mui/material';
-import styled from 'styled-components';
-import { keyframes } from 'styled-components';
+import { Box, Grid, TextField, Button, Typography } from '@mui/material';
+import styled, { keyframes } from 'styled-components';
 
 const gradientAnimation = keyframes`
   0% {
@@ -15,36 +14,38 @@ const gradientAnimation = keyframes`
   }
 `;
 
-const ContactWrapper = styled.div`
-  background: linear-gradient(45deg, #000000, #1a1a1a);
-  color: #ffffff;
-  padding: 88px 0;
+const ContactWrapper = styled.section`
   min-height: 100vh;
+  padding: 80px 20px;
+  background: #335da9;
+  color: #ffffff;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  position: relative;
-  overflow: hidden;
+  justify-content: center;
+`;
 
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(25, 118, 210, 0.1), transparent 60%);
-    pointer-events: none;
+const ContactContainer = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  gap: 30px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 `;
 
 const GlassCard = styled.div`
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 20px;
-  padding: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+  padding: 40px;
+  flex: 1;
 
   &:hover {
     transform: translateY(-5px);
@@ -77,34 +78,21 @@ const ContactTitle = styled.h1`
 `;
 
 const ContactInfo = styled.div`
-  margin-top: 30px;
-  
-  a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: #0066FF;
-      transition: width 0.3s ease;
-    }
-    
-    &:hover {
-      color: #0066FF;
-      
-      &:after {
-        width: 100%;
-      }
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const InfoLabel = styled(Typography)`
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+`;
+
+const InfoText = styled(Typography)`
+  color: #ffffff;
+  font-size: 1rem;
+  margin-bottom: 20px;
 `;
 
 const StyledTextField = styled(TextField)`
@@ -218,30 +206,18 @@ const FormTitle = styled.h2`
   }
 `;
 
-const InfoLabel = styled(Typography)`
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-  margin-bottom: 4px;
-`;
-
-const InfoText = styled(Typography)`
-  color: #ffffff;
-  font-size: 1rem;
-  margin-bottom: 20px;
-`;
-
 const Contact = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -252,102 +228,96 @@ const Contact = () => {
 
   return (
     <ContactWrapper>
-      <Container maxWidth="lg">
-        <Grid container spacing={4} alignItems="stretch">
-          <Grid item xs={12} md={5}>
-            <GlassCard>
-              <Box mb={3}>
-                <ContactTitle>Contact Us</ContactTitle>
-              </Box>
-              <ContactInfo>
-                <InfoLabel>Phone</InfoLabel>
-                <InfoText>
-                  <a href="tel:+919643532726">+91 9643532726</a>,{' '}
-                  <a href="tel:+917428229339">+91 7428229339</a>
-                </InfoText>
-                
-                <InfoLabel>Email</InfoLabel>
-                <InfoText>
-                  <a href="mailto:support@dropshipindia.live">
-                    support@dropshipindia.live
-                  </a>
-                </InfoText>
-                
-                <InfoLabel>Instagram</InfoLabel>
-                <InfoText>
-                  <a href="https://instagram.com/dropshipindia.live" target="_blank" rel="noopener noreferrer">
-                    @dropshipindia.live
-                  </a>
-                </InfoText>
-              </ContactInfo>
-            </GlassCard>
-          </Grid>
+      <ContactContainer>
+        <GlassCard>
+          <Box mb={3}>
+            <ContactTitle>Contact Us</ContactTitle>
+          </Box>
+          <ContactInfo>
+            <InfoLabel>Phone</InfoLabel>
+            <InfoText>
+              <a href="tel:+919643532726">+91 9643532726</a>,{' '}
+              <a href="tel:+917428229339">+91 7428229339</a>
+            </InfoText>
+            
+            <InfoLabel>Email</InfoLabel>
+            <InfoText>
+              <a href="mailto:support@dropshipindia.live">
+                support@dropshipindia.live
+              </a>
+            </InfoText>
+            
+            <InfoLabel>Instagram</InfoLabel>
+            <InfoText>
+              <a href="https://instagram.com/dropshipindia.live" target="_blank" rel="noopener noreferrer">
+                @dropshipindia.live
+              </a>
+            </InfoText>
+          </ContactInfo>
+        </GlassCard>
 
-          <Grid item xs={12} md={7}>
-            <GlassCard style={{ height: '100%' }}>
-              <Box mb={3}>
-                <FormTitle>Send Us A Message</FormTitle>
-              </Box>
-              <form onSubmit={handleSubmit}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <StyledTextField
-                      label="Full Name"
-                      name="fullName"
-                      value={formData.fullName}
-                      onChange={handleChange}
-                      variant="outlined"
-                      fullWidth
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <StyledTextField
-                      label="Email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      variant="outlined"
-                      fullWidth
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <StyledTextField
-                      label="Phone Number"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      variant="outlined"
-                      fullWidth
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <StyledTextField
-                      label="Message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      variant="outlined"
-                      multiline
-                      rows={4}
-                      fullWidth
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <SubmitButton type="submit" variant="contained">
-                      SEND MESSAGE
-                    </SubmitButton>
-                  </Grid>
-                </Grid>
-              </form>
-            </GlassCard>
-          </Grid>
-        </Grid>
-      </Container>
+        <GlassCard>
+          <Box mb={3}>
+            <FormTitle>Send Us A Message</FormTitle>
+          </Box>
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <StyledTextField
+                  label="Full Name"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  variant="outlined"
+                  fullWidth
+                  required
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <StyledTextField
+                  label="Email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  variant="outlined"
+                  fullWidth
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <StyledTextField
+                  label="Phone Number"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  variant="outlined"
+                  fullWidth
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <StyledTextField
+                  label="Message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  variant="outlined"
+                  multiline
+                  rows={4}
+                  fullWidth
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <SubmitButton type="submit" variant="contained">
+                  SEND MESSAGE
+                </SubmitButton>
+              </Grid>
+            </Grid>
+          </form>
+        </GlassCard>
+      </ContactContainer>
     </ContactWrapper>
   );
 };

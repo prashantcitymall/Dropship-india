@@ -16,48 +16,28 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={
-            <>
-              <div className="home-page" />
-              <Hero />
-              <Products />
-              <About />
-              <Shipping />
-              <Contact />
+            <div className="home-page">
+              <div className="home-content">
+                <section className="home-section">
+                  <Hero />
+                </section>
+                <section className="home-section">
+                  <About />
+                </section>
+                <section className="home-section">
+                  <Shipping />
+                </section>
+                <section className="home-section">
+                  <Contact />
+                </section>
+              </div>
               <Footer />
-            </>
+            </div>
           } />
-          <Route path="/products" element={
-            <>
-              <div className="other-page" />
-              <Products />
-            </>
-          } />
-          <Route path="/services" element={
-            <>
-              <div className="other-page" />
-              <Shipping />
-            </>
-          } />
-          <Route path="/about" element={
-            <>
-              <div className="other-page" />
-              <About />
-            </>
-          } />
-          <Route path="/team" element={
-            <>
-              <div className="other-page" />
-              <div>Team Page</div>
-              <Footer />
-            </>
-          } />
-          <Route path="/contact" element={
-            <>
-              <div className="other-page" />
-              <Contact />
-              <Footer />
-            </>
-          } />
+          <Route path="/products" element={<Products />} />
+          <Route path="/services" element={<Shipping />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
     </Router>

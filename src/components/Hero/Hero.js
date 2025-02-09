@@ -16,7 +16,7 @@ const slideUp = keyframes`
 
 const HeroSection = styled(Box)`
   color: white;
-  padding: 100px 0;
+  padding: 100px 0 8px;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
@@ -168,38 +168,24 @@ const LogoGrid = styled.div`
 
 const LogoContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 5px;
-  transition: all 0.3s ease;
+  gap: 10px;
+  padding: 8px 16px;
 
   img {
     height: 30px;
     width: auto;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-  }
-
-  &:hover {
-    transform: translateY(-2px);
-    img {
-      opacity: 1;
-      transform: scale(1.05);
-    }
+    opacity: 1;
   }
 `;
 
 const LogoText = styled.span`
   color: white;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   letter-spacing: 0.5px;
-  opacity: 0.8;
-  transition: all 0.3s ease;
-
-  &:hover {
-    opacity: 1;
-  }
+  margin-left: 5px;
 `;
 
 const Hero = () => {
