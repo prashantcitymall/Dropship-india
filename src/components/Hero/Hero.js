@@ -186,7 +186,7 @@ const Hero = () => {
             variant="contained"
             onClick={() => window.open('https://dropshipindia.live/', '_blank')}
           >
-            Go Premium
+            Get Started
           </PremiumButton>
         </ButtonGroup>
       </ContentWrapper>
