@@ -33,7 +33,7 @@ const slideUp = keyframes`
 
 const ProductsWrapper = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, #000000, #0A0A0A, #141414);
+  background: linear-gradient(135deg, #0466c8, #023e7d, #002855);
   padding: 120px 0;
   position: relative;
   overflow: hidden;
@@ -46,8 +46,8 @@ const ProductsWrapper = styled.div`
     right: 0;
     bottom: 0;
     background: 
-      radial-gradient(circle at 20% 20%, rgba(0, 245, 160, 0.1), transparent 25%),
-      radial-gradient(circle at 80% 80%, rgba(0, 217, 245, 0.1), transparent 25%);
+      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05), transparent 25%),
+      radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05), transparent 25%);
     pointer-events: none;
   }
 `;
@@ -64,11 +64,8 @@ const Title = styled(Typography)`
   font-weight: 700;
   text-align: center;
   margin-bottom: 40px;
-  color: transparent;
-  background: linear-gradient(135deg, #8BC34A 0%, #4CAF50 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 15px rgba(139, 195, 74, 0.3);
+  color: #ffffff;
+  text-shadow: 0 2px 15px rgba(255, 255, 255, 0.2);
   letter-spacing: 2px;
 
   @media (max-width: 768px) {
@@ -83,8 +80,8 @@ const ImageContainer = styled.div`
   margin: 60px auto;
   border-radius: 20px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   animation: ${glowPulse} 4s infinite;
 
   &:before {
@@ -96,7 +93,7 @@ const ImageContainer = styled.div`
     bottom: 0;
     border-radius: 20px;
     padding: 2px;
-    background: linear-gradient(135deg, #00F5A0, #00D9F5);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -112,7 +109,7 @@ const ImageContainer = styled.div`
     bottom: 0;
     background: linear-gradient(
       transparent 0%,
-      rgba(0, 245, 160, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 50%,
       transparent 100%
     );
     animation: ${scanline} 4s linear infinite;
@@ -133,22 +130,22 @@ const FeatureGrid = styled(Grid)`
 `;
 
 const FeatureBox = styled(Box)`
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   padding: 30px;
   height: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(0, 245, 160, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
   }
 `;
 
 const FeatureTitle = styled(Typography)`
-  color: #00F5A0;
+  color: #ffffff;
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 16px;

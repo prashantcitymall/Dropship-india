@@ -1,6 +1,6 @@
 /* Additional styles for the about tiles */
 .about-section {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.8) 100%);
+  background: linear-gradient(135deg, #0466c8, #023e7d, #002855);
   min-height: 100vh;
   padding: 80px 0;
 }
