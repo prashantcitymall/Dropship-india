@@ -237,9 +237,6 @@ function Navbar() {
               <StyledButton component={Link} to="/">
                 Home
               </StyledButton>
-              <StyledButton component={Link} to="/about">
-                About
-              </StyledButton>
               <StyledButton component={Link} to="/products">
                 Products
               </StyledButton>

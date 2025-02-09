@@ -7,6 +7,7 @@ import Shipping from './components/Shipping/Shipping';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import About from './pages/About';
+import AutoCarousel from './components/AutoCarousel/AutoCarousel';
 import './App.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                 <section className="home-section">
                   <Contact />
                 </section>
+                <AutoCarousel />
               </div>
               <Footer />
             </div>
