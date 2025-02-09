@@ -48,6 +48,12 @@ section {
 .home-section {
   padding: 10px 15px;
   background: #335da9;
+  margin: 40px 0;
+  position: relative;
+}
+
+.home-section.no-margin {
+  margin: 0;
 }
 
 /* Section transitions */

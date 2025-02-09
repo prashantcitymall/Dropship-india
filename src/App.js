@@ -27,10 +27,10 @@ function App() {
                 </section>
                 <FeaturedCard />
                 <FeatureTiles />
-                <section className="home-section">
+                <section className="home-section no-margin">
                   <Sourcing />
                 </section>
-                <section className="home-section">
+                <section className="home-section no-margin">
                   <Shipping />
                 </section>
                 <section className="home-section">
