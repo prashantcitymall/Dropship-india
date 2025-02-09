@@ -219,8 +219,8 @@ const AboutAnalytics = () => {
         borderColor: 'rgb(53, 162, 235)',
         tension: 0.4,
         yAxisID: 'y1',
-      },
-    ],
+      }
+    ]
   };
 
   const lineOptions = {
@@ -383,7 +383,7 @@ const AboutAnalytics = () => {
   };
 
   return (
-    <AnalyticsSection>
+    <AnalyticsSection className="about-analytics-section">
       <AnalyticsHeader>
         <AnalyticsTitle>Analytics</AnalyticsTitle>
         <AnalyticsSubtitle>Get detailed insights about your stores.</AnalyticsSubtitle>

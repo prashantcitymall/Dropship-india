@@ -294,6 +294,45 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  const scrollToTop = (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const scrollWithOffset = (element) => {
+    const offset = 1358; 
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  };
+
+  const scrollToCapabilities = (e) => {
+    e.preventDefault();
+    const capabilitiesTitle = document.querySelector('.capabilities-title');
+    if (capabilitiesTitle) {
+      scrollWithOffset(capabilitiesTitle);
+    } else {
+      window.location.href = '/#capabilities';
+    }
+  };
+
+  const scrollToAbout = (e) => {
+    e.preventDefault();
+    const aboutSection = document.querySelector('.about-analytics-section');
+    if (aboutSection) {
+      scrollWithOffset(aboutSection);
+    } else {
+      window.location.href = '/#about';
+    }
+  };
+
   return (
     <HeaderWrapper>
       <StyledAppBar position="static">
@@ -305,14 +344,29 @@ const Navbar = () => {
               </Link>
             </LogoContainer>
             <NavContainer>
-              <Link to="/" style={{ textDecoration: 'none' }}>
-                <StyledButton active={isActive('/')}>Home</StyledButton>
+              <Link to="#" style={{ textDecoration: 'none' }}>
+                <StyledButton 
+                  active={isActive('/')}
+                  onClick={scrollToTop}
+                >
+                  Home
+                </StyledButton>
               </Link>
-              <Link to="/services" style={{ textDecoration: 'none' }}>
-                <StyledButton active={isActive('/services')}>Services</StyledButton>
+              <Link to="#" style={{ textDecoration: 'none' }}>
+                <StyledButton 
+                  active={isActive('/services')}
+                  onClick={scrollToCapabilities}
+                >
+                  Services
+                </StyledButton>
               </Link>
-              <Link to="/about" style={{ textDecoration: 'none' }}>
-                <StyledButton active={isActive('/about')}>About Us</StyledButton>
+              <Link to="#" style={{ textDecoration: 'none' }}>
+                <StyledButton 
+                  active={isActive('/about')}
+                  onClick={scrollToAbout}
+                >
+                  About Us
+                </StyledButton>
               </Link>
               <AuthButton
                 onClick={() => window.open('https://dropshipindia.live/', '_blank')}
@@ -348,8 +402,11 @@ const Navbar = () => {
           <DrawerItem 
             button 
             component={Link} 
-            to="/" 
-            onClick={handleDrawerToggle}
+            to="#"
+            onClick={(e) => {
+              handleDrawerToggle();
+              scrollToTop(e);
+            }}
             active={isActive('/')}
           >
             Home
@@ -357,8 +414,11 @@ const Navbar = () => {
           <DrawerItem 
             button 
             component={Link} 
-            to="/services" 
-            onClick={handleDrawerToggle}
+            to="#"
+            onClick={(e) => {
+              handleDrawerToggle();
+              scrollToCapabilities(e);
+            }}
             active={isActive('/services')}
           >
             Services
@@ -366,8 +426,11 @@ const Navbar = () => {
           <DrawerItem 
             button 
             component={Link} 
-            to="/about" 
-            onClick={handleDrawerToggle}
+            to="#"
+            onClick={(e) => {
+              handleDrawerToggle();
+              scrollToAbout(e);
+            }}
             active={isActive('/about')}
           >
             About Us
