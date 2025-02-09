@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Button, Container, IconButton, Drawer, List, ListItem } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -112,22 +112,9 @@ const DrawerList = styled(List)`
   }
 `;
 
-const DrawerItem = styled(ListItem)`
-  && {
-    padding: 12px;
-    margin-bottom: 8px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    
-    &:hover {
-      background: rgba(82, 157, 255, 0.1);
-    }
-  }
-`;
-
 const StyledButton = styled(Button)`
   && {
-    color: black;
+    color: ${props => props.active ? '#8BC34A' : 'black'};
     text-transform: none;
     font-size: 1rem;
     padding: 10px 24px;
@@ -135,9 +122,9 @@ const StyledButton = styled(Button)`
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.1);
+    background: ${props => props.active ? 'rgba(139, 195, 74, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid ${props => props.active ? '#8BC34A' : 'rgba(0, 0, 0, 0.1)'};
 
     @media (max-width: 1200px) {
       padding: 8px 20px;
@@ -151,8 +138,8 @@ const StyledButton = styled(Button)`
       left: 0;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.2), transparent);
-      transform: scaleX(0);
+      background: linear-gradient(90deg, transparent, ${props => props.active ? '#8BC34A' : 'rgba(0, 0, 0, 0.2)'}, transparent);
+      transform: scaleX(${props => props.active ? '1' : '0'});
       transform-origin: left;
       transition: transform 0.3s ease;
     }
@@ -167,14 +154,14 @@ const StyledButton = styled(Button)`
       background: linear-gradient(
         90deg,
         transparent,
-        rgba(255, 255, 255, 0.2),
+        rgba(139, 195, 74, 0.2),
         transparent
       );
       transition: 0.5s;
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: ${props => props.active ? 'rgba(139, 195, 74, 0.15)' : 'rgba(255, 255, 255, 0.2)'};
       transform: translateY(-2px);
       animation: ${glowAnimation} 3s infinite;
 
@@ -186,6 +173,21 @@ const StyledButton = styled(Button)`
       &::after {
         left: 100%;
       }
+    }
+  }
+`;
+
+const DrawerItem = styled(ListItem)`
+  && {
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    color: ${props => props.active ? '#8BC34A' : 'inherit'};
+    background: ${props => props.active ? 'rgba(139, 195, 74, 0.1)' : 'transparent'};
+    
+    &:hover {
+      background: ${props => props.active ? 'rgba(139, 195, 74, 0.15)' : 'rgba(82, 157, 255, 0.1)'};
     }
   }
 `;
@@ -284,10 +286,13 @@ const SignUpButton = styled(Button)`
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <HeaderWrapper>
@@ -301,13 +306,13 @@ const Navbar = () => {
             </LogoContainer>
             <NavContainer>
               <Link to="/" style={{ textDecoration: 'none' }}>
-                <StyledButton>Home</StyledButton>
+                <StyledButton active={isActive('/')}>Home</StyledButton>
               </Link>
               <Link to="/services" style={{ textDecoration: 'none' }}>
-                <StyledButton>Services</StyledButton>
+                <StyledButton active={isActive('/services')}>Services</StyledButton>
               </Link>
               <Link to="/about" style={{ textDecoration: 'none' }}>
-                <StyledButton>About Us</StyledButton>
+                <StyledButton active={isActive('/about')}>About Us</StyledButton>
               </Link>
               <AuthButton
                 onClick={() => window.open('https://dropshipindia.live/', '_blank')}
@@ -340,13 +345,31 @@ const Navbar = () => {
         }}
       >
         <DrawerList>
-          <DrawerItem button component={Link} to="/" onClick={handleDrawerToggle}>
+          <DrawerItem 
+            button 
+            component={Link} 
+            to="/" 
+            onClick={handleDrawerToggle}
+            active={isActive('/')}
+          >
             Home
           </DrawerItem>
-          <DrawerItem button component={Link} to="/services" onClick={handleDrawerToggle}>
+          <DrawerItem 
+            button 
+            component={Link} 
+            to="/services" 
+            onClick={handleDrawerToggle}
+            active={isActive('/services')}
+          >
             Services
           </DrawerItem>
-          <DrawerItem button component={Link} to="/about" onClick={handleDrawerToggle}>
+          <DrawerItem 
+            button 
+            component={Link} 
+            to="/about" 
+            onClick={handleDrawerToggle}
+            active={isActive('/about')}
+          >
             About Us
           </DrawerItem>
           <DrawerItem button onClick={() => {
