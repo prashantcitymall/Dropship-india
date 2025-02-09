@@ -124,7 +124,7 @@ const About = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <AboutTitle>About Us</AboutTitle>
+        <AboutTitle>Google</AboutTitle>
         <AboutList>
           <ListItem>
             <Bullet>•</Bullet>

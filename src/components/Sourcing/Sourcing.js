@@ -28,7 +28,16 @@ const rippleEffect = keyframes`
   }
 `;
 
-const AboutSection = styled.section`
+const scroll = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-270px * 5)); /* Number of cards * card width */
+  }
+`;
+
+const SourcingSection = styled.section`
   padding: 120px 24px;
   background: linear-gradient(135deg, #1a2b6d 0%, #182860 100%);
   position: relative;
@@ -53,7 +62,7 @@ const AboutSection = styled.section`
   }
 `;
 
-const AboutTitle = styled.h2`
+const SourcingTitle = styled.h2`
   text-align: center;
   font-size: 3.2rem;
   color: #ffffff;
@@ -106,37 +115,52 @@ const AboutTitle = styled.h2`
   }
 `;
 
-const CardsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  max-width: 1400px;
+const CarouselContainer = styled.div`
+  width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  position: relative;
+  overflow: hidden;
+  padding: 20px 0;
 
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 0 16px;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 2;
   }
 
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
-    padding: 0 12px;
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(26, 43, 109, 1), transparent);
   }
 
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 8px;
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(26, 43, 109, 1), transparent);
+  }
+`;
+
+const CardsTrack = styled.div`
+  display: flex;
+  width: calc(270px * 10); /* Double the number of cards for infinite scroll */
+  animation: ${scroll} 60s linear infinite;
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    animation-play-state: paused;
+    transform: scale(0.98);
   }
 `;
 
 const Card = styled.div`
+  flex: 0 0 270px;
+  height: 270px;
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 24px;
-  padding: 40px 30px;
+  border-radius: 22px;
+  padding: 36px 27px;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -144,10 +168,10 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 260px;
+  justify-content: center;
   position: relative;
   overflow: hidden;
+  margin: 0 18px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transform-origin: center;
   will-change: transform;
@@ -190,9 +214,9 @@ const Card = styled.div`
     transform: translateY(-5px) scale(1.05);
     border-color: rgba(255, 255, 255, 0.3);
     box-shadow: 
-      0 15px 45px rgba(0, 0, 0, 0.2),
-      0 0 20px rgba(33, 150, 243, 0.2),
-      0 0 40px rgba(33, 150, 243, 0.1);
+      0 14px 41px rgba(0, 0, 0, 0.2),
+      0 0 18px rgba(33, 150, 243, 0.2),
+      0 0 36px rgba(33, 150, 243, 0.1);
 
     &::before {
       animation: ${waveFlow} 4s ease infinite;
@@ -208,56 +232,21 @@ const Card = styled.div`
       animation: ${rippleEffect} 3s ease-in-out infinite;
     }
   }
-
-  @media (max-width: 1200px) {
-    padding: 35px 25px;
-    min-height: 240px;
-    border-radius: 20px;
-  }
-
-  @media (max-width: 768px) {
-    padding: 30px 20px;
-    min-height: 220px;
-    border-radius: 16px;
-  }
-
-  @media (max-width: 480px) {
-    padding: 25px 16px;
-    min-height: 200px;
-    border-radius: 12px;
-  }
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 700;
   color: #ffffff;
-  margin-bottom: 12px;
-  line-height: 1.3;
-  white-space: pre-line;
-
-  @media (max-width: 1200px) {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-  }
+  font-size: 1.62rem;
+  margin-bottom: 18px;
+  font-weight: 700;
+  text-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
 `;
 
 const CardText = styled.p`
-  font-size: 1rem;
+  color: #e0e0e0;
+  font-size: 0.9rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0;
-  white-space: pre-line;
-
-  @media (max-width: 768px) {
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
+  font-weight: 400;
 `;
 
 const Highlight = styled.span`
@@ -265,41 +254,61 @@ const Highlight = styled.span`
   font-weight: 600;
 `;
 
-const AboutAnalytics = () => {
+const Sourcing = () => {
+  const cards = [
+    {
+      title: "48-Hours Quick Sourcing",
+      text: "Fast sourcing service for\nnew products at\nunbeatable prices"
+    },
+    {
+      title: "60K+ High Quality Products",
+      text: "Access to\n60K+ high quality\ncurated products"
+    },
+    {
+      title: "Top Manufacturers Network",
+      text: "Sourced from\n8,500+ top manufacturers,\nimporters and sellers"
+    },
+    {
+      title: "Better Pricing Guaranteed",
+      text: "Minimum 30% better pricing\nfor products vs\nall other platforms"
+    },
+    {
+      title: "Custom Packaging",
+      text: "Flexible\ncustom packaging\noptions available"
+    }
+  ];
+
+  // Double the cards array for seamless infinite scroll
+  const allCards = [...cards, ...cards];
+
   return (
-    <AboutSection className="about-analytics-section">
-      <AboutTitle>About Us</AboutTitle>
-      <CardsContainer>
-        <Card>
-          <CardTitle>Who We Are</CardTitle>
-          <CardText>
-            Dropship India, a <Highlight>Citymall subsidiary</Highlight>, is India&apos;s fastest-growing dropshipping platform & the smart choice for all eCommerce entrepreneurs.
-          </CardText>
-        </Card>
-
-        <Card>
-          <CardTitle>Our Scale</CardTitle>
-          <CardText>
-            Built by professionals, Dropship India currently works with{'\n'}<Highlight>150+ dropshippers</Highlight> &{'\n'}<Highlight>&gt;40,000 orders daily</Highlight>.
-          </CardText>
-        </Card>
-
-        <Card>
-          <CardTitle>Our Products</CardTitle>
-          <CardText>
-            <Highlight>Wide range of products</Highlight>{'\n'}with highest profit margins and{'\n'}comprehensive end-to-end order{'\n'}delivery and fulfillment.
-          </CardText>
-        </Card>
-
-        <Card>
-          <CardTitle>Our Values</CardTitle>
-          <CardText>
-            We pride ourselves on maintaining{'\n'}complete <Highlight>Transparency & Trust</Highlight>{'\n'}in all our business operations.
-          </CardText>
-        </Card>
-      </CardsContainer>
-    </AboutSection>
+    <SourcingSection>
+      <SourcingTitle>Amazon</SourcingTitle>
+      <CarouselContainer>
+        <CardsTrack>
+          {allCards.map((card, index) => (
+            <Card key={index}>
+              <CardTitle>{card.title}</CardTitle>
+              <CardText>
+                {card.text.split('\n').map((line, i) => (
+                  <React.Fragment key={i}>
+                    {i > 0 && <br />}
+                    {line.includes('new products at') ||
+                     line.includes('60K+ high quality') ||
+                     line.includes('8,500+ top manufacturers') ||
+                     line.includes('Minimum 30% better pricing') ||
+                     line.includes('custom packaging') ? (
+                      <Highlight>{line}</Highlight>
+                    ) : line}
+                  </React.Fragment>
+                ))}
+              </CardText>
+            </Card>
+          ))}
+        </CardsTrack>
+      </CarouselContainer>
+    </SourcingSection>
   );
 };
 
-export default AboutAnalytics;
+export default Sourcing;

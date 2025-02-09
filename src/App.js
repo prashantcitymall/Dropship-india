@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Products from './components/Products/Products';
 import Shipping from './components/Shipping/Shipping';
+import Sourcing from './components/Sourcing/Sourcing';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import About from './pages/About';
@@ -27,7 +28,7 @@ function App() {
                 <FeaturedCard />
                 <FeatureTiles />
                 <section className="home-section">
-                  <About />
+                  <Sourcing />
                 </section>
                 <section className="home-section">
                   <Shipping />
@@ -45,7 +46,12 @@ function App() {
               <Products />
             </div>
           } />
-          <Route path="/services" element={<Shipping />} />
+          <Route path="/services" element={
+            <>
+              <Sourcing />
+              <Shipping />
+            </>
+          } />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
