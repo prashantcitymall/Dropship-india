@@ -1,5 +1,4 @@
 import React from 'react';
-import Capabilities from './components/Capabilities/Capabilities';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
@@ -21,7 +20,6 @@ function App() {
               <div className="home-page" />
               <Hero />
               <Products />
-              <Capabilities />
               <About />
               <Shipping />
               <Contact />
