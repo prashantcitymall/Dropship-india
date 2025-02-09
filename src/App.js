@@ -22,6 +22,9 @@ function App() {
               <Hero />
               <Products />
               <Capabilities />
+              <About />
+              <Shipping />
+              <Contact />
               <Footer />
             </>
           } />
