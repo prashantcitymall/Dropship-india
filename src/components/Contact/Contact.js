@@ -26,6 +26,10 @@ const ContactWrapper = styled.section`
   position: relative;
   overflow: hidden;
 
+  @media (max-width: 768px) {
+    padding: 60px 16px;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -45,8 +49,14 @@ const ContactContainer = styled.div`
   gap: 40px;
   margin: 0 auto;
   
+  @media (max-width: 1024px) {
+    max-width: 90%;
+    gap: 30px;
+  }
+  
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 `;
 
@@ -60,6 +70,14 @@ const GlassCard = styled.div`
   padding: 40px;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 1024px) {
+    padding: 30px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 24px;
+  }
 
   &::before {
     content: '';
@@ -98,6 +116,11 @@ const Title = styled.h2`
   position: relative;
   display: inline-block;
 
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+    margin-bottom: 24px;
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -115,6 +138,10 @@ const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
 `;
 
 const InfoItem = styled.div`
@@ -126,6 +153,10 @@ const InfoItem = styled.div`
   &:hover {
     transform: translateX(10px);
   }
+
+  @media (max-width: 768px) {
+    gap: 6px;
+  }
 `;
 
 const InfoLabel = styled.span`
@@ -134,12 +165,20 @@ const InfoLabel = styled.span`
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+  }
 `;
 
 const InfoText = styled.span`
   color: #ffffff;
   font-size: 1.1rem;
   font-weight: 500;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const StyledTextField = styled(TextField)`
@@ -151,6 +190,10 @@ const StyledTextField = styled(TextField)`
     background: rgba(255, 255, 255, 0.03);
     border-radius: 15px;
     transition: all 0.3s ease;
+    
+    @media (max-width: 768px) {
+      height: ${props => props.multiline ? 'auto' : '50px'};
+    }
     
     &:hover {
       background: rgba(255, 255, 255, 0.05);
@@ -179,6 +222,10 @@ const StyledTextField = styled(TextField)`
     color: rgba(255, 255, 255, 0.7);
     font-size: 1rem;
     
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+    
     &.Mui-focused {
       color: #529dff;
     }
@@ -188,6 +235,11 @@ const StyledTextField = styled(TextField)`
     color: #ffffff;
     font-size: 1rem;
     padding: 15px;
+    
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+      padding: 12px;
+    }
     
     &::placeholder {
       color: rgba(255, 255, 255, 0.5);
@@ -208,6 +260,11 @@ const SubmitButton = styled(Button)`
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    
+    @media (max-width: 768px) {
+      padding: 12px 30px;
+      font-size: 0.95rem;
+    }
     
     &::before {
       content: '';

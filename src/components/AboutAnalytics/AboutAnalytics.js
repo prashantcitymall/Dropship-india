@@ -25,64 +25,121 @@ ChartJS.register(
 );
 
 const AnalyticsSection = styled.div`
-  padding: 10px 20px 30px;
+  padding: 60px 24px;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
+
+  @media (max-width: 1024px) {
+    padding: 40px 20px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px 16px;
+  }
 `;
 
 const AnalyticsHeader = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   padding-left: 20px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 30px;
+    padding-left: 0;
+    text-align: center;
+  }
 `;
 
 const AnalyticsTitle = styled.h2`
   font-size: 2.2rem;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   background: linear-gradient(135deg, #8BC34A 0%, #4CAF50 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 2px 15px rgba(139, 195, 74, 0.3);
+
+  @media (max-width: 1024px) {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
 `;
 
 const AnalyticsSubtitle = styled.p`
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 1.6fr 1fr;
-  gap: 15px;
-  margin-bottom: 15px;
+  gap: 24px;
+  margin-bottom: 24px;
   max-width: 90%;
   margin-left: auto;
   margin-right: auto;
 
+  @media (max-width: 1200px) {
+    gap: 20px;
+    max-width: 95%;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1.4fr 1fr;
+  }
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 16px;
     max-width: 100%;
   }
 `;
 
 const ChartContainer = styled.div`
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  padding: 12px;
+  border-radius: 16px;
+  padding: 24px;
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  height: ${props => props.isMainChart ? '309px' : '300px'};
+  height: ${props => props.isMainChart ? '400px' : '350px'};
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
+
+  @media (max-width: 1200px) {
+    height: ${props => props.isMainChart ? '350px' : '300px'};
+    padding: 20px;
+  }
+
+  @media (max-width: 768px) {
+    height: ${props => props.isMainChart ? '300px' : '280px'};
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
 `;
 
 const SmallChartContainer = styled(ChartContainer)`
-  height: 300px;
-  padding: 20px;
+  height: 350px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   
@@ -90,13 +147,33 @@ const SmallChartContainer = styled(ChartContainer)`
     height: 220px !important;
     width: 100% !important;
   }
+
+  @media (max-width: 1200px) {
+    height: 300px;
+    padding: 20px;
+  }
+
+  @media (max-width: 768px) {
+    height: 280px;
+    padding: 16px;
+
+    canvas {
+      height: 200px !important;
+    }
+  }
 `;
 
 const ChartTitle = styled.h3`
   color: rgba(255, 255, 255, 0.9);
-  font-size: 0.95rem;
-  margin: 0 0 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 16px;
   padding-left: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin: 0 0 12px;
+  }
 `;
 
 const ChartWrapper = styled.div`

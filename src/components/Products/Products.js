@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Typography, Box } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import styled from 'styled-components';
 import './Products.css';
 
@@ -11,6 +11,14 @@ const ProductsWrapper = styled.div`
   background: transparent !important;
   color: #335da9;
 
+  @media (max-width: 1024px) {
+    padding: 100px 0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 80px 0;
+  }
+
   &:after {
     content: none;
   }
@@ -19,6 +27,14 @@ const ProductsWrapper = styled.div`
 const ProductSection = styled.section`
   margin-bottom: 120px;
   background: transparent !important;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 100px;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 80px;
+  }
 `;
 
 const Title = styled(Typography)`
@@ -42,6 +58,29 @@ const Title = styled(Typography)`
   text-shadow: 
     2px 2px 4px rgba(51, 93, 169, 0.2),
     -2px -2px 4px rgba(139, 195, 74, 0.2);
+  
+  @media (max-width: 1200px) {
+    font-size: 4rem;
+    margin-bottom: 35px;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
   
   &::before {
     content: 'DROPSHIP INDIA';
@@ -77,11 +116,18 @@ const Title = styled(Typography)`
     box-shadow: 
       0 0 10px rgba(51, 93, 169, 0.5),
       0 0 20px rgba(139, 195, 74, 0.3);
-  }
 
-  @media (max-width: 768px) {
-    font-size: 3rem;
-    letter-spacing: 2px;
+    @media (max-width: 768px) {
+      width: 120px;
+      height: 3px;
+      bottom: -8px;
+    }
+
+    @media (max-width: 480px) {
+      width: 100px;
+      height: 2px;
+      bottom: -6px;
+    }
   }
 
   @keyframes shine {
@@ -94,106 +140,13 @@ const Title = styled(Typography)`
   }
 `;
 
-const ImageContainer = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  margin: 60px auto;
-  border-radius: 20px;
-  padding: 20px;
-  background: transparent !important;
-
-  &:before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-    padding: 2px;
-    background: linear-gradient(135deg, rgba(51, 93, 169, 0.3), rgba(51, 93, 169, 0.1));
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
-    mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-`;
-
-const ProductImage = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  background: transparent !important;
-`;
-
-const FeatureGrid = styled(Grid)`
-  margin-top: 100px;
-`;
-
-const FeatureBox = styled(Box)`
-  border-radius: 16px;
-  padding: 30px;
-  height: 100%;
-  border: 1px solid rgba(51, 93, 169, 0.3);
-  background: transparent !important;
-`;
-
-const FeatureTitle = styled(Typography)`
-  color: #335da9;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-`;
-
-const FeatureDescription = styled(Typography)`
-  color: #335da9;
-  font-size: 1rem;
-  line-height: 1.6;
-`;
-
 const Products = () => {
   return (
-    <ProductsWrapper className="products-wrapper">
-      <Container maxWidth="lg">
+    <ProductsWrapper>
+      <Container maxWidth="xl">
+        <Title>Our Products</Title>
         <ProductSection>
-          <Title variant="h1">
-            DROPSHIP INDIA
-          </Title>
-          <ImageContainer className="image-container">
-            <ProductImage 
-              src="/images/products.png" 
-              alt="Dropship India Products" 
-            />
-          </ImageContainer>
-          <FeatureGrid container spacing={4}>
-            <Grid item xs={12} md={4}>
-              <FeatureBox>
-                <FeatureTitle>Automated Sourcing</FeatureTitle>
-                <FeatureDescription>
-                  AI-powered product sourcing that automatically finds the best suppliers with competitive prices and reliable shipping times.
-                </FeatureDescription>
-              </FeatureBox>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <FeatureBox>
-                <FeatureTitle>Smart Inventory</FeatureTitle>
-                <FeatureDescription>
-                  Real-time inventory management system with predictive analytics to prevent stockouts and optimize your product lineup.
-                </FeatureDescription>
-              </FeatureBox>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <FeatureBox>
-                <FeatureTitle>Seamless Integration</FeatureTitle>
-                <FeatureDescription>
-                  Easy integration with major e-commerce platforms and marketplaces for streamlined order processing.
-                </FeatureDescription>
-              </FeatureBox>
-            </Grid>
-          </FeatureGrid>
+          {/* Product content will go here */}
         </ProductSection>
       </Container>
     </ProductsWrapper>
