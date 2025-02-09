@@ -240,9 +240,6 @@ function Navbar() {
               <StyledButton component={Link} to="/products">
                 Products
               </StyledButton>
-              <StyledButton component={Link} to="/contact">
-                Contact
-              </StyledButton>
             </NavContainer>
             <AuthButton
               variant="contained"

@@ -8,6 +8,8 @@ import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import About from './pages/About';
 import AutoCarousel from './components/AutoCarousel/AutoCarousel';
+import FeaturedCard from './components/FeaturedCard/FeaturedCard';
+import FeatureTiles from './components/FeatureTiles/FeatureTiles';
 import './App.css';
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
                 <section className="home-section">
                   <Hero />
                 </section>
+                <FeaturedCard />
+                <FeatureTiles />
                 <section className="home-section">
                   <About />
                 </section>
@@ -36,7 +40,11 @@ function App() {
               <Footer />
             </div>
           } />
-          <Route path="/products" element={<Products />} />
+          <Route path="/products" element={
+            <div style={{ background: 'none' }}>
+              <Products />
+            </div>
+          } />
           <Route path="/services" element={<Shipping />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
