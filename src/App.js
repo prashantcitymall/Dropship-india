@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Products from './components/Products/Products';
-import Shipping from './components/Shipping/Shipping';
+import Services from './components/Services/Services';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
-import About from './pages/About';
+import About from './components/About/About';
 import AutoCarousel from './components/AutoCarousel/AutoCarousel';
 import FeaturedCard from './components/FeaturedCard/FeaturedCard';
 import FeatureTiles from './components/FeatureTiles/FeatureTiles';
@@ -27,12 +27,6 @@ function App() {
                 <FeaturedCard />
                 <FeatureTiles />
                 <section className="home-section">
-                  <About />
-                </section>
-                <section className="home-section">
-                  <Shipping />
-                </section>
-                <section className="home-section">
                   <Contact />
                 </section>
                 <AutoCarousel />
@@ -45,7 +39,7 @@ function App() {
               <Products />
             </div>
           } />
-          <Route path="/services" element={<Shipping />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

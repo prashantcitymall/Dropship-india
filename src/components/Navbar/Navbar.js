@@ -306,6 +306,9 @@ const Navbar = () => {
               <Link to="/services" style={{ textDecoration: 'none' }}>
                 <StyledButton>Services</StyledButton>
               </Link>
+              <Link to="/about" style={{ textDecoration: 'none' }}>
+                <StyledButton>About Us</StyledButton>
+              </Link>
               <AuthButton
                 onClick={() => window.open('https://dropshipindia.live/', '_blank')}
               >
@@ -342,6 +345,9 @@ const Navbar = () => {
           </DrawerItem>
           <DrawerItem button component={Link} to="/services" onClick={handleDrawerToggle}>
             Services
+          </DrawerItem>
+          <DrawerItem button component={Link} to="/about" onClick={handleDrawerToggle}>
+            About Us
           </DrawerItem>
           <DrawerItem button onClick={() => {
             window.open('https://dropshipindia.live/', '_blank');
