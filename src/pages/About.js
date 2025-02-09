@@ -98,11 +98,11 @@ const About = () => {
         <AboutTitle>About Dropship India</AboutTitle>
         <AboutDescription>
           <DescriptionParagraph>
-            Dropship India, a <HighlightText>Citymall subsidiary</HighlightText> is India's fastest-growing dropshipping platform & the smart choice for all eCommerce entrepreneurs.
+            Dropship India, a <HighlightText>Citymall subsidiary</HighlightText> is India&apos;s fastest-growing dropshipping platform & the smart choice for all eCommerce entrepreneurs.
           </DescriptionParagraph>
           
           <DescriptionParagraph>
-            Built by professionals, Dropship India currently works with <HighlightText>150+ dropshippers</HighlightText> & <HighlightText>>40,000 orders daily</HighlightText>.
+            Built by professionals, Dropship India currently works with <HighlightText>150+ dropshippers</HighlightText> & <HighlightText>&gt;40,000 orders daily</HighlightText>.
           </DescriptionParagraph>
 
           <DescriptionParagraph>

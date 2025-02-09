@@ -2,11 +2,6 @@ import React from 'react';
 import { Container, Grid, Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import XIcon from '@mui/icons-material/X';
 
 const FooterWrapper = styled.footer`
   position: relative;
@@ -163,53 +158,6 @@ const ClickableText = styled(Typography)`
 
     &:after {
       width: 100%;
-    }
-  }
-`;
-
-const SocialIconsWrapper = styled.div`
-  display: flex;
-  gap: 20px;
-  margin-top: 30px;
-`;
-
-const SocialIcon = styled.a`
-  color: #ffffff;
-  background: linear-gradient(135deg, #00F5A0, #00D9F5);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, #00F5A0, #00D9F5);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  svg {
-    font-size: 20px;
-    position: relative;
-    z-index: 1;
-  }
-
-  &:hover {
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 245, 160, 0.3);
-    
-    &:before {
-      opacity: 1;
     }
   }
 `;

@@ -1,6 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Button, Container, Box, Typography, Menu, MenuItem } from '@mui/material';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { AppBar, Toolbar, Button, Container, Box } from '@mui/material';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
@@ -52,21 +51,6 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-const BorderLine = styled.div`
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255, 255, 255, 0.3) 20%, 
-    rgba(255, 255, 255, 0.3) 80%, 
-    transparent 100%
-  );
-`;
-
 const StyledAppBar = styled(AppBar)`
   background-color: transparent !important;
   box-shadow: none !important;
@@ -80,7 +64,7 @@ const navButtonGlow = keyframes`
   100% { box-shadow: 0 0 5px rgba(65, 105, 225, 0.2); }
 `;
 
-const NavButton = styled(Button)`
+const StyledButton = styled(Button)`
   && {
     color: rgba(255, 255, 255, 0.75);
     text-transform: none;
@@ -132,67 +116,9 @@ const NavButton = styled(Button)`
   }
 `;
 
-const LogoContainer = styled(Box)`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+const NavContainer = styled(Box)`
   display: flex;
   align-items: center;
-  padding: 8px;
-  margin-top: 0px;
-  transition: all 0.3s ease;
-`;
-
-const float = keyframes`
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-`;
-
-const pulse = keyframes`
-  0% {
-    filter: drop-shadow(0 0 0px rgba(65, 105, 225, 0));
-  }
-  50% {
-    filter: drop-shadow(0 0 15px rgba(65, 105, 225, 0.3));
-  }
-  100% {
-    filter: drop-shadow(0 0 0px rgba(65, 105, 225, 0));
-  }
-`;
-
-const Logo = styled.img`
-  height: 101px;
-  width: auto;
-  display: block;
-  animation: ${float} 3s ease-in-out infinite, ${pulse} 3s ease-in-out infinite;
-  transition: all 0.3s ease;
-  margin: 0 37px;
-  
-  &:hover {
-    animation-play-state: paused;
-    transform: scale(1.05) translateY(-5px);
-    filter: drop-shadow(0 0 20px rgba(65, 105, 225, 0.4));
-  }
-`;
-
-const LeftNav = styled(Box)`
-  display: flex;
-  align-items: center;
-  z-index: 1;
-`;
-
-const RightNav = styled(Box)`
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  gap: 16px;
   z-index: 1;
 `;
 
@@ -301,67 +227,39 @@ const AuthButton = styled(Button)`
   }
 `;
 
-const Navbar = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+function Navbar() {
   return (
     <HeaderWrapper>
       <StyledAppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <Typography
-                variant="h6"
-                noWrap
-                sx={{
-                  mr: 2,
-                  fontWeight: 700,
-                  color: 'white',
-                  textDecoration: 'none',
-                }}
-              >
-                DROPSHIP INDIA
-              </Typography>
-            </Link>
-
-            <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-              <NavButton component={Link} to="/">Home</NavButton>
-              <NavButton component={Link} to="/products">Products</NavButton>
-              <NavButton component={Link} to="/services">Services</NavButton>
-              <NavButton component={Link} to="/about">About</NavButton>
-              <NavButton component={Link} to="/contact">Contact Us</NavButton>
-            </Box>
-
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <AuthButton
-                variant="outlined"
-                startIcon={<PersonOutlineIcon />}
-                className="login"
-              >
-                Sign In
-              </AuthButton>
-              <AuthButton
-                variant="contained"
-                className="signup"
-              >
-                Sign up
-              </AuthButton>
-            </Box>
+            <NavContainer>
+              <StyledButton component={Link} to="/">
+                Home
+              </StyledButton>
+              <StyledButton component={Link} to="/about">
+                About
+              </StyledButton>
+              <StyledButton component={Link} to="/products">
+                Products
+              </StyledButton>
+              <StyledButton component={Link} to="/contact">
+                Contact
+              </StyledButton>
+            </NavContainer>
+            <AuthButton
+              variant="contained"
+              startIcon={<PersonOutlineIcon />}
+              component={Link}
+              to="/login"
+            >
+              Login
+            </AuthButton>
           </Toolbar>
         </Container>
       </StyledAppBar>
-      <BorderLine />
     </HeaderWrapper>
   );
-};
+}
 
 export default Navbar;

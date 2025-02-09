@@ -76,31 +76,6 @@ const Title = styled(Typography)`
   }
 `;
 
-const CategoryTitle = styled(Typography)`
-  color: #ffffff;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-  position: relative;
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #00F5A0, #00D9F5);
-  }
-
-  @media (max-width: 960px) {
-    font-size: 1.5rem;
-  }
-`;
-
 const ImageContainer = styled.div`
   position: relative;
   width: 100%;

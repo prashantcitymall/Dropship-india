@@ -1,13 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Typography, Button, Box } from '@mui/material';
+import React from 'react';
+import { Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-
-const glowText = keyframes`
-  0% { text-shadow: 0 0 10px rgba(65, 105, 225, 0.3), 0 0 20px rgba(65, 105, 225, 0.3); }
-  50% { text-shadow: 0 0 20px rgba(65, 105, 225, 0.5), 0 0 30px rgba(65, 105, 225, 0.5); }
-  100% { text-shadow: 0 0 10px rgba(65, 105, 225, 0.3), 0 0 20px rgba(65, 105, 225, 0.3); }
-`;
 
 const slideUp = keyframes`
   from { 

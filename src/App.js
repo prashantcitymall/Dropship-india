@@ -1,5 +1,4 @@
 import React from 'react';
-import ElectricField from './components/ElectricField/ElectricField';
 import Capabilities from './components/Capabilities/Capabilities';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
