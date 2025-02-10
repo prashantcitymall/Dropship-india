@@ -298,9 +298,7 @@ const Navbar = () => {
 
   const menuItems = [
     { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
     { label: 'Graphs', path: '/graphs' },
-    { label: 'Contact', path: '/contact' },
   ];
 
   return (

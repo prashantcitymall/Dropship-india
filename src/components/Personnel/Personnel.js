@@ -74,11 +74,16 @@ const CardText = styled.p`
   color: rgba(255, 255, 255, 0.9);
 `;
 
+const GreenText = styled.span`
+  color: #4CAF50;
+  font-weight: 700;
+`;
+
 const Personnel = () => {
   const cards = [
     {
       title: 'Who We Are',
-      text: 'Dropship India, a Citymall subsidiary, is India\'s fastest-growing dropshipping platform & the smart choice for all eCommerce entrepreneurs.'
+      text: <>Dropship India, a <GreenText>Citymall subsidiary</GreenText>, is India&apos;s fastest-growing dropshipping platform & the smart choice for all eCommerce entrepreneurs.</>
     },
     {
       title: 'Our Scale',
