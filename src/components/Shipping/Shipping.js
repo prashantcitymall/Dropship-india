@@ -40,55 +40,24 @@ const scroll = keyframes`
 `;
 
 const ShippingTitle = styled.h2`
+  font-size: 2.5rem;
   text-align: center;
-  font-size: 3.2rem;
-  color: #ffffff;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
+  color: #4CAF50;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   position: relative;
-  display: inline-block;
-  padding-left: 20px;
-  font-weight: 800;
-  background: linear-gradient(135deg, #ffffff 0%, #a5c5ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 2px 15px rgba(165, 197, 255, 0.3);
+  padding-bottom: 15px;
 
-  &::after {
+  &:after {
     content: '';
     position: absolute;
-    bottom: -15px;
-    left: 20px;
-    width: calc(100% - 20px);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
     height: 3px;
-    background: linear-gradient(90deg, #529dff, transparent);
-  }
-
-  @media (max-width: 1200px) {
-    font-size: 2.8rem;
-    margin-bottom: 60px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 2.4rem;
-    margin-bottom: 50px;
-    letter-spacing: 2px;
-    padding-left: 10px;
-
-    &::after {
-      bottom: -12px;
-      height: 2px;
-      left: 10px;
-      width: calc(100% - 10px);
-    }
-  }
-
-  @media (max-width: 480px) {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    letter-spacing: 1px;
+    background: #4CAF50;
   }
 `;
 
@@ -96,7 +65,7 @@ const ShippingSection = styled.section`
   padding: 60px 0;
   background: #1a237e;
   position: relative;
-  margin-top: -20%;
+  margin-top: -28%;
   z-index: 1;
   overflow: hidden;
 
@@ -233,23 +202,11 @@ const Card = styled.div`
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1.62rem; /* Reduced from 1.8rem */
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 18px; /* Reduced from 20px */
-  line-height: 1.3;
-  white-space: pre-line;
-  text-shadow: 0 2px 9px rgba(0, 0, 0, 0.1); /* Reduced from 10px */
-
-  @media (max-width: 1200px) {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
-  }
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #4CAF50;
+  text-align: center;
 `;
 
 const CardText = styled.p`
@@ -300,7 +257,7 @@ const Shipping = () => {
 
   return (
     <ShippingSection>
-      <ShippingTitle>Flipkart</ShippingTitle>
+      <ShippingTitle>SHIPPING</ShippingTitle>
       <CarouselContainer>
         <CardsTrack>
           {allCards.map((card, index) => (

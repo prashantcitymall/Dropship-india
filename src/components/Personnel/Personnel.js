@@ -7,6 +7,7 @@ const PersonnelSection = styled.section`
   color: white;
   position: relative;
   margin-top: -25%;
+  margin-bottom: -25px;
   z-index: 3;
 `;
 
@@ -14,7 +15,7 @@ const Title = styled.h2`
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 50px;
-  color: white;
+  color: #4CAF50;
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
@@ -63,6 +64,7 @@ const Card = styled.div`
 const CardTitle = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 15px;
+  font-weight: bold;
   color: #4CAF50;
 `;
 
@@ -94,7 +96,7 @@ const Personnel = () => {
 
   return (
     <PersonnelSection>
-      <Title>Personnel</Title>
+      <Title>About Us</Title>
       <CardsContainer>
         {cards.map((card, index) => (
           <Card key={index}>
