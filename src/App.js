@@ -41,6 +41,9 @@ function App() {
                 </section>
                 <AutoCarousel />
                 <section className="home-section">
+                  <Graphs />
+                </section>
+                <section className="home-section">
                   <Contact />
                 </section>
               </div>

@@ -2,18 +2,18 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const GraphsSection = styled.section`
-  padding: 80px 0;
-  background: #1a237e;
-  min-height: 100vh;
+  padding: 30px 0 60px;
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -40px;
 `;
 
 const Title = styled.h2`
   font-size: 2.5rem;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   color: #4CAF50;
   text-transform: uppercase;
   letter-spacing: 2px;
