@@ -11,6 +11,8 @@ import About from './pages/About';
 import AutoCarousel from './components/AutoCarousel/AutoCarousel';
 import FeaturedCard from './components/FeaturedCard/FeaturedCard';
 import FeatureTiles from './components/FeatureTiles/FeatureTiles';
+import Personnel from './components/Personnel/Personnel';
+import Resources from './components/Resources/Resources';
 import './App.css';
 
 function App() {
@@ -27,16 +29,19 @@ function App() {
                 </section>
                 <FeaturedCard />
                 <FeatureTiles />
-                <section className="home-section no-margin">
+                <section className="home-section">
+                  <Personnel />
+                </section>
+                <section className="home-section">
                   <Sourcing />
                 </section>
-                <section className="home-section no-margin">
+                <section className="home-section">
                   <Shipping />
                 </section>
+                <AutoCarousel />
                 <section className="home-section">
                   <Contact />
                 </section>
-                <AutoCarousel />
               </div>
               <Footer />
             </div>
@@ -46,14 +51,9 @@ function App() {
               <Products />
             </div>
           } />
-          <Route path="/services" element={
-            <>
-              <Sourcing />
-              <Shipping />
-            </>
-          } />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/resources" element={<Resources />} />
         </Routes>
       </div>
     </Router>

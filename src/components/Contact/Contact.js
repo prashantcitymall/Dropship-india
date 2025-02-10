@@ -16,28 +16,25 @@ const glowAnimation = keyframes`
 
 const ContactWrapper = styled.section`
   min-height: 100vh;
-  padding: 80px 20px;
-  background: linear-gradient(135deg, #1a2b6d 0%, #182860 100%);
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 60px 0;
+  background: #1a237e;
   position: relative;
   overflow: hidden;
-
-  @media (max-width: 768px) {
-    padding: 60px 16px;
-  }
 
   &::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(82, 157, 255, 0.3), transparent);
+    width: 100%;
+    height: 100%;
+    background: #1a237e;
+    opacity: 0.9;
+    z-index: -1;
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 16px;
   }
 `;
 

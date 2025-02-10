@@ -33,80 +33,123 @@ const scroll = keyframes`
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-240px * 10)); /* Number of cards * card width */
+    transform: translateX(calc(-270px * 5)); /* Number of cards * card width */
   }
 `;
 
 const SourcingSection = styled.section`
+  padding: 60px 0;
+  background: #1a237e;
   position: relative;
-  width: 100%;
-  min-height: auto;
-  padding: 0;
-  margin: 0;
-  background: linear-gradient(180deg, #1a237e 0%, #0d47a1 100%);
+  margin-top: -45%;
+  z-index: 2;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1a237e;
+    opacity: 0.9;
+    z-index: -1;
+  }
+
+  @media (max-width: 1200px) {
+    padding: 100px 20px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 80px 16px;
+  }
 `;
 
 const SourcingTitle = styled.h2`
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: #ffffff;
   text-align: center;
-  margin: 10px 0;
+  font-size: 3.2rem;
+  color: #ffffff;
+  margin-bottom: 80px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
   position: relative;
-  z-index: 2;
+  display: inline-block;
+  padding-left: 20px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 0%, #a5c5ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 15px rgba(165, 197, 255, 0.3);
 
   &::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 2px;
-    background: linear-gradient(90deg, 
-      transparent,
-      #8BC34A,
-      transparent
-    );
+    bottom: -15px;
+    left: 20px;
+    width: calc(100% - 20px);
+    height: 3px;
+    background: linear-gradient(90deg, #529dff, transparent);
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 2.8rem;
+    margin-bottom: 60px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.4rem;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    padding-left: 10px;
+
+    &::after {
+      bottom: -12px;
+      height: 2px;
+      left: 10px;
+      width: calc(100% - 10px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
   }
 `;
 
 const CarouselContainer = styled.div`
   width: 100%;
-  overflow: hidden;
+  margin: 0 auto;
   position: relative;
-  padding: 10px 0;
-  margin: 0;
+  overflow: hidden;
+  padding: 20px 0;
 
   &::before,
   &::after {
     content: '';
     position: absolute;
     top: 0;
-    bottom: 0;
-    width: 150px;
+    width: 200px;
+    height: 100%;
     z-index: 2;
-    pointer-events: none;
   }
 
   &::before {
     left: 0;
-    background: linear-gradient(90deg, #1a237e, transparent);
+    background: linear-gradient(to right, rgba(26, 43, 109, 1), transparent);
   }
 
   &::after {
     right: 0;
-    background: linear-gradient(-90deg, #1a237e, transparent);
+    background: linear-gradient(to left, rgba(26, 43, 109, 1), transparent);
   }
 `;
 
 const CardsTrack = styled.div`
   display: flex;
-  width: calc(240px * 10);
+  width: calc(270px * 10); /* Double the number of cards for infinite scroll */
   animation: ${scroll} 60s linear infinite;
   transition: all 0.5s ease-in-out;
 
@@ -117,11 +160,11 @@ const CardsTrack = styled.div`
 `;
 
 const Card = styled.div`
-  flex: 0 0 240px;
-  height: 240px;
+  flex: 0 0 270px;
+  height: 270px;
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 20px;
-  padding: 30px 24px;
+  border-radius: 22px;
+  padding: 36px 27px;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -132,7 +175,7 @@ const Card = styled.div`
   justify-content: center;
   position: relative;
   overflow: hidden;
-  margin: 0 15px;
+  margin: 0 18px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transform-origin: center;
   will-change: transform;
@@ -175,9 +218,9 @@ const Card = styled.div`
     transform: translateY(-5px) scale(1.05);
     border-color: rgba(255, 255, 255, 0.3);
     box-shadow: 
-      0 12px 36px rgba(0, 0, 0, 0.2),
-      0 0 15px rgba(33, 150, 243, 0.2),
-      0 0 30px rgba(33, 150, 243, 0.1);
+      0 14px 41px rgba(0, 0, 0, 0.2),
+      0 0 18px rgba(33, 150, 243, 0.2),
+      0 0 36px rgba(33, 150, 243, 0.1);
 
     &::before {
       animation: ${waveFlow} 4s ease infinite;
@@ -196,15 +239,17 @@ const Card = styled.div`
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1.5rem;
-  margin-bottom: 15px;
+  color: #ffffff;
+  font-size: 1.62rem;
+  margin-bottom: 18px;
   font-weight: 700;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 9px rgba(0, 0, 0, 0.1);
 `;
 
 const CardText = styled.p`
-  font-size: 0.85rem;
-  line-height: 1.5;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  line-height: 1.6;
   font-weight: 400;
 `;
 

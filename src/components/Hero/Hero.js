@@ -84,7 +84,7 @@ const MainTitle = styled.h1`
 const SubTitle = styled.h2`
   font-size: 2.2rem;
   margin-bottom: 40px;
-  color: #333;
+  color: #4CAF50;
   line-height: 1.4;
   animation: ${slideUp} 0.8s ease-out 0.2s backwards;
   text-align: center;

@@ -13,18 +13,19 @@ const scroll = keyframes`
 
 const CarouselContainer = styled.div`
   width: 100%;
-  padding: 60px 0;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
+  background: #1a237e;
+  padding: 40px 0;
   position: relative;
+  margin-top: -20px;
+  z-index: 1;
   overflow: hidden;
 
   @media (max-width: 1024px) {
-    padding: 50px 0;
+    padding: 30px 0;
   }
 
   @media (max-width: 768px) {
-    padding: 40px 0;
+    padding: 20px 0;
   }
 
   &::before,
