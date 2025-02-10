@@ -298,7 +298,6 @@ const Navbar = () => {
 
   const menuItems = [
     { label: 'Home', path: '/' },
-    { label: 'Graphs', path: '/graphs' },
   ];
 
   return (
