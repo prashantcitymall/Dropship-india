@@ -48,7 +48,7 @@ const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 8px 0;
-  margin-left: 5%;
+  margin-left: -3%;
 
   @media (max-width: 1024px) {
     margin-left: 0;
@@ -60,13 +60,17 @@ const LogoContainer = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 62px;
+  height: 63px;
   width: auto;
-  margin-right: 10px;
-  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 
-  @media (max-width: 768px) {
-    height: 50px;
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 1024px) {
+    height: 51px;
   }
 `;
 
