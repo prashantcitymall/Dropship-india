@@ -13,6 +13,7 @@ import FeaturedCard from './components/FeaturedCard/FeaturedCard';
 import FeatureTiles from './components/FeatureTiles/FeatureTiles';
 import Personnel from './components/Personnel/Personnel';
 import Resources from './components/Resources/Resources';
+import Graphs from './components/Graphs/Graphs';
 import './App.css';
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
             </div>
           } />
           <Route path="/about" element={<About />} />
+          <Route path="/graphs" element={<Graphs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/resources" element={<Resources />} />
         </Routes>

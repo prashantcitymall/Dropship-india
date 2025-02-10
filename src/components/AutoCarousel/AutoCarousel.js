@@ -13,19 +13,19 @@ const scroll = keyframes`
 
 const CarouselContainer = styled.div`
   width: 100%;
-  background: #1a237e;
-  padding: 40px 0;
-  position: relative;
-  margin-top: -20px;
-  z-index: 1;
   overflow: hidden;
+  position: relative;
+  margin-top: -10%;
+  z-index: 2;
+  background: #1a237e;
+  padding: 60px 0;
 
   @media (max-width: 1024px) {
-    padding: 30px 0;
+    padding: 50px 0;
   }
 
   @media (max-width: 768px) {
-    padding: 20px 0;
+    padding: 40px 0;
   }
 
   &::before,
@@ -175,11 +175,34 @@ const Card = styled.div`
   }
 `;
 
+const Title = styled.h2`
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #4CAF50;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  padding-bottom: 15px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: #4CAF50;
+  }
+`;
+
 const AutoCarousel = ({ images = ['blue.png', 'del.png', 'ekart.png', 'express.png', 'shadow.png'] }) => {
   const duplicatedImages = [...images, ...images];
 
   return (
     <CarouselContainer>
+      <Title>Our Shipping Partners</Title>
       <CarouselTrack>
         <CardContainer>
           {duplicatedImages.map((image, index) => (

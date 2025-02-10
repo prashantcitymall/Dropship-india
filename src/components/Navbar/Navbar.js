@@ -285,53 +285,23 @@ const SignUpButton = styled(Button)`
 `;
 
 const Navbar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+    setIsOpen(!isOpen);
   };
 
-  const isActive = (path) => location.pathname === path;
-
-  const scrollToTop = (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
-  const scrollWithOffset = (element) => {
-    const offset = 1358; 
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - offset;
-    
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    });
-  };
-
-  const scrollToCapabilities = (e) => {
-    e.preventDefault();
-    const capabilitiesTitle = document.querySelector('.capabilities-title');
-    if (capabilitiesTitle) {
-      scrollWithOffset(capabilitiesTitle);
-    } else {
-      window.location.href = '/#capabilities';
-    }
-  };
-
-  const scrollToAbout = (e) => {
-    e.preventDefault();
-    const aboutSection = document.querySelector('.about-analytics-section');
-    if (aboutSection) {
-      scrollWithOffset(aboutSection);
-    } else {
-      window.location.href = '/#about';
-    }
-  };
+  const menuItems = [
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    { label: 'Graphs', path: '/graphs' },
+    { label: 'Contact', path: '/contact' },
+  ];
 
   return (
     <HeaderWrapper>
@@ -344,30 +314,15 @@ const Navbar = () => {
               </Link>
             </LogoContainer>
             <NavContainer>
-              <Link to="#" style={{ textDecoration: 'none' }}>
-                <StyledButton 
-                  active={isActive('/')}
-                  onClick={scrollToTop}
-                >
-                  Home
-                </StyledButton>
-              </Link>
-              <Link to="#" style={{ textDecoration: 'none' }}>
-                <StyledButton 
-                  active={isActive('/services')}
-                  onClick={scrollToCapabilities}
-                >
-                  Services
-                </StyledButton>
-              </Link>
-              <Link to="#" style={{ textDecoration: 'none' }}>
-                <StyledButton 
-                  active={isActive('/about')}
-                  onClick={scrollToAbout}
-                >
-                  About Us
-                </StyledButton>
-              </Link>
+              {menuItems.map((item, index) => (
+                <Link to={item.path} key={index} style={{ textDecoration: 'none' }}>
+                  <StyledButton 
+                    active={isActive(item.path)}
+                  >
+                    {item.label}
+                  </StyledButton>
+                </Link>
+              ))}
               <AuthButton
                 onClick={() => window.open('https://dropshipindia.live/', '_blank')}
               >
@@ -392,49 +347,25 @@ const Navbar = () => {
 
       <StyledDrawer
         anchor="right"
-        open={mobileOpen}
+        open={isOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
           keepMounted: true,
         }}
       >
         <DrawerList>
-          <DrawerItem 
-            button 
-            component={Link} 
-            to="#"
-            onClick={(e) => {
-              handleDrawerToggle();
-              scrollToTop(e);
-            }}
-            active={isActive('/')}
-          >
-            Home
-          </DrawerItem>
-          <DrawerItem 
-            button 
-            component={Link} 
-            to="#"
-            onClick={(e) => {
-              handleDrawerToggle();
-              scrollToCapabilities(e);
-            }}
-            active={isActive('/services')}
-          >
-            Services
-          </DrawerItem>
-          <DrawerItem 
-            button 
-            component={Link} 
-            to="#"
-            onClick={(e) => {
-              handleDrawerToggle();
-              scrollToAbout(e);
-            }}
-            active={isActive('/about')}
-          >
-            About Us
-          </DrawerItem>
+          {menuItems.map((item, index) => (
+            <DrawerItem 
+              key={index} 
+              button 
+              component={Link} 
+              to={item.path}
+              onClick={handleDrawerToggle}
+              active={isActive(item.path)}
+            >
+              {item.label}
+            </DrawerItem>
+          ))}
           <DrawerItem button onClick={() => {
             window.open('https://dropshipindia.live/', '_blank');
             handleDrawerToggle();

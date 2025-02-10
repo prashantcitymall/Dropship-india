@@ -19,6 +19,8 @@ const ContactWrapper = styled.section`
   padding: 60px 0;
   background: #1a237e;
   position: relative;
+  margin-top: -7%;
+  z-index: 2;
   overflow: hidden;
 
   &::before {
